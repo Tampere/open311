@@ -25,6 +25,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Service::class, function (Faker\Generator $faker) {
     return [
+        'service_code' => $faker->uuid,
         'service_name' => $faker->unique()->company,
         'description' => $faker->paragraph,
         'group' => $faker->company,
