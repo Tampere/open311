@@ -22,3 +22,31 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Service::class, function (Faker\Generator $faker) {
+    return [
+        'service_name' => $faker->unique()->company,
+        'description' => $faker->paragraph,
+        'group' => $faker->company,
+    ];
+});
+
+$factory->define(App\Request::class, function (Faker\Generator $faker) {
+    return [
+        'service_code' => function() {
+            return factory(App\Service::class)->create()->service_code;
+        },
+        'status' => $faker->randomElement(['open', 'closed']),
+        'agency_responsible' => $faker->company,
+        'description' => $faker->paragraph,
+        'title' => $faker->sentence,
+        'address_string' => $faker->streetAddress,
+        'zip_code' => $faker->numberBetween(30000, 39999),
+        'email' => $faker->safeEmail,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'phone' => $faker->phoneNumber,
+        'media_url' => $faker->url,
+        'location' => $faker->latitude . ', ' . $faker->longitude,
+    ];
+});
