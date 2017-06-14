@@ -12,4 +12,6 @@ class Request extends Model
     public $incrementing = false;
 
     public $primaryKey = 'service_request_id';
+
+    protected $guarded = [];
 }
