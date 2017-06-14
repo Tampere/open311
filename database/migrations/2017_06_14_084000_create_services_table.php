@@ -18,6 +18,8 @@ class CreateServicesTable extends Migration
             $table->string('service_name');
             $table->text('description');
             $table->text('group');
+            $table->boolean('metadata')->default(false);
+            $table->string('type')->default('realtime');
             $table->timestamps();
 
             $table->primary('service_code');
