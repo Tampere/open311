@@ -230,4 +230,8 @@ return [
 
     ],
 
+    'supportedExtensions' => [
+        'json',
+        'xml'
+    ]
 ];
