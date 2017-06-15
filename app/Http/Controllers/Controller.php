@@ -10,4 +10,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function checkExtension($extension)
+    {
+        if(!in_array($extension, config('app.supportedExtensions'))) {
+            abort(400, "Invalid extension '$extension'");
+        }
+    }
 }
