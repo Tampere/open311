@@ -18,8 +18,6 @@ class Service extends Model
 
     protected $appends = ['keywords'];
 
-    //protected $with = ['keywords'];
-
     public function keywords()
     {
         return $this->belongsToMany(Keyword::class, 'keyword_service', 'service_code');
