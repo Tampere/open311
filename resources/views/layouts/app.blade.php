@@ -37,8 +37,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;@if(Auth::check())
-                              <li><a href="{{route('services')}}">Services</a></li>
-                              <li><a href="{{route('requests')}}">Requests</a></li>
+                              <li><a href="{{route('services.index')}}">Services</a></li>
+                              <li><a href="{{route('requests.index')}}">Requests</a></li>
                           @endif
                     </ul>
 
@@ -94,9 +94,11 @@
         </nav>
 
         @yield('content')
+
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <Flash message="fuubar"></Flash>
 </body>
 </html>
