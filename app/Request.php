@@ -21,4 +21,23 @@ class Request extends Model
     {
         return $filters->apply($query);
     }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_code');
+    }
+
+    public function getLat()
+    {
+        if(is_null($this->location)) return null;
+
+        return explode(',', $this->location)[0];
+    }
+
+    public function getLong()
+    {
+        if(is_null($this->location)) return null;
+
+        return explode(',', $this->location)[1];
+    }
 }
