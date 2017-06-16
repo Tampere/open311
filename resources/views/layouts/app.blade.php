@@ -94,11 +94,10 @@
         </nav>
 
         @yield('content')
-
+        <Flash></Flash>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <Flash message="fuubar"></Flash>
 </body>
 </html>
