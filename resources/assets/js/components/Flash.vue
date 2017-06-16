@@ -22,7 +22,7 @@
             };
         },
 
-        created() {
+        mounted() {
             if(this.message) {
                 this.flash(this.message);
             }
@@ -36,6 +36,8 @@
             flash(message) {
                 this.body = message;
                 this.show = true;
+
+                this.hide();
             },
 
             hide() {
