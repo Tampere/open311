@@ -5,7 +5,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Services
-                        <button @click.prevent="showForm = !showForm"
+                        <button @click.prevent="showForm = !showForm; editing = false"
                             class="btn btn-link pull-right">
                             Add a new service
                             <i class="glyphicon glyphicon-plus-sign"></i>
@@ -102,9 +102,18 @@
                                             class="btn btn-default">Reset & close
                                         </button>
                                         <button
+                                            v-if="!editing"
                                             @click.prevent="submitForm"
-                                            class="btn btn-primary">
+                                            class="btn btn-primary"
+                                        >
                                             Save new service
+                                        </button>
+                                        <button
+                                            v-if="editing"
+                                            @click.prevent="submitEditForm"
+                                            class="btn btn-primary"
+                                        >
+                                            Save changes to service
                                         </button>
                                     </div>
                                 </div>
@@ -123,7 +132,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="service in items">
+                            <tr v-for="(service, index) in items">
                                 <td>{{service.service_code}}</td>
                                 <td>{{service.service_name}}</td>
                                 <td>{{service.description}}</td>
@@ -131,10 +140,16 @@
                                 <td>{{service.keywords | json_to_list}}</td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <button class="btn btn-xs btn-primary">
+                                        <button
+                                            class="btn btn-xs btn-primary"
+                                            @click.prevent="editService(service, index)"
+                                        >
                                             <i class="glyphicon glyphicon-pencil"></i>
                                         </button>
-                                        <button class="btn btn-xs btn-danger">
+                                        <button
+                                            class="btn btn-xs btn-danger"
+                                            @click.prevent="removeService(service, index)"
+                                        >
                                             <i class="glyphicon glyphicon-trash"></i>
                                         </button>
                                     </div>
@@ -157,6 +172,9 @@
             return {
                 items: [],
                 showForm: false,
+                editing: false,
+                service_code_to_edit: '',
+                index_to_edit: 0,
 
                 service_code: '',
                 service_name: '',
@@ -210,13 +228,65 @@
                 }).catch(error => {
                     this.errors = error.response.data;
                 });
-            }
+            },
+
+            submitEditForm() {
+                axios.put('services/' + this.service_code_to_edit, {
+                    service_code: this.service_code,
+                    service_name: this.service_name,
+                    description: this.description,
+                    group: this.group,
+                    keywords: this.keywords,
+                }).then(response => {
+                    this.resetAndClose();
+                    flash("Service modifications saved");
+                    this.items.splice(this.index_to_edit, 1);
+                    this.items.push(response.data);
+                }).catch(error => {
+                    this.errors = error.response.data;
+                });
+            },
+
+            removeService(service, index) {
+                axios.delete('services/' + service.service_code)
+                    .then(response => {
+                        this.items.splice(index, 1);
+                        flash(response.data.message);
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+
+            editService(service, index) {
+                this.service_code = service.service_code;
+                this.service_name = service.service_name;
+                this.description = service.description;
+                this.group = service.group;
+
+                if(!service.keywords) {
+                    this.keywords = '';
+                } else if(typeof service.keywords === 'string') {
+                    this.keywords = service.keywords;
+                } else {
+                    let result = '';
+                    service.keywords.forEach(item => {
+                        result += item.name + ', ';
+                    });
+                    this.keywords = result;
+                }
+
+                this.service_code_to_edit = service.service_code;
+                this.index_to_edit = index;
+                this.editing = true;
+                this.showForm = true;
+            },
         },
 
         filters: {
             json_to_list(arg) {
 
                 if(!arg) return '';
+                if(typeof arg === 'string') return arg;
 
                 let result = '';
                 arg.forEach(item => {

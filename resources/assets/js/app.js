@@ -15,6 +15,12 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+window.events = new Vue();
+
+window.flash = function(message) {
+    window.events.$emit('flash', message);
+};
+
 Vue.component('Flash', require('./components/Flash.vue'));
 Vue.component('Services', require('./components/Services.vue'));
 
@@ -22,8 +28,3 @@ const app = new Vue({
     el: '#app'
 });
 
-window.events = new Vue();
-
-window.flash = function(message) {
-    window.events.$emit('flash', message);
-};
