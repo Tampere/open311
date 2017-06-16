@@ -11,11 +11,15 @@ trait GeoLocateable
 
     public function setLocationAttribute($value)
     {
-        $this->attributes['location'] = DB::raw("POINT($value)");
+        $this->attributes['location'] = $value ? DB::raw("POINT($value)") : null;
     }
 
     public function getLocationAttribute($value)
     {
+        if(is_null($value)) {
+            return null;
+        }
+
         $loc =  substr($value, 6);
         $loc = preg_replace('/[ ,]+/', ',', $loc, 1);
 
