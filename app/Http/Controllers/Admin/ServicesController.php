@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Keyword;
 use App\Service;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,17 @@ class ServicesController extends Controller
             'group' => 'required',
         ]);
 
-        return Service::create($request->only(['service_code', 'service_name', 'description', 'group']));
+        $service = Service::create($request->only(['service_code', 'service_name', 'description', 'group']));
+
+        if(request()->has('keywords')) {
+            $keywords = explode(',', request()->get('keywords'));
+            foreach($keywords as $keyword) {
+                $key = Keyword::firstOrCreate(['name' => $keyword]);
+                $service->keywords()->save($key);
+            }
+        }
+
+        return $service->load('keywords');
     }
 
     /**
@@ -81,7 +92,26 @@ class ServicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'service_code' => 'required|unique:services,service_code,'.$id.',service_code',
+            'service_name' => 'required|max:255',
+            'description' => 'required',
+            'group' => 'required',
+        ]);
+
+        $service = Service::findOrFail($id);
+
+        if(request()->has('keywords')) {
+            $keywords = explode(',', request()->get('keywords'));
+            foreach($keywords as $keyword) {
+                $keys[] = Keyword::firstOrCreate(['name' => $keyword])->id;
+            }
+
+            $service->keywords()->sync($keys);
+        }
+
+        return $service;
+
     }
 
     /**
@@ -92,6 +122,8 @@ class ServicesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Service::destroy($id);
+
+        return response()->json(['message' => 'Service removed'], 200);
     }
 }
