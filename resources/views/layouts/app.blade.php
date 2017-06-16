@@ -36,7 +36,10 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        &nbsp;@if(Auth::check())
+                              <li><a href="{{route('services')}}">Services</a></li>
+                              <li><a href="{{route('requests')}}">Requests</a></li>
+                          @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -46,6 +49,25 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <span class="label label-danger label-as-badge">
+                                        {{Auth::user()->notifications->count() > 0 ?
+                                            Auth::user()->notifications->count() : ''}}
+                                    </span>
+                                    <i class="glyphicon glyphicon-bell"></i> <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    @forelse(Auth::user()->notifications as $notification)
+                                        @include('notifications.' . snake_case(class_basename($notification->type)))
+                                        <li role="separator" class="divider"></li>
+                                    @empty
+                                        <li><a href="#">No notifications</a></li>
+                                    @endforelse
+                                </ul>
+                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
