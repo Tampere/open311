@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Request as ServiceRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RequestsController extends Controller
@@ -14,7 +16,22 @@ class RequestsController extends Controller
      */
     public function index()
     {
-        //
+        $requests = ServiceRequest::latest()
+            ->with('service')
+            ->where('status', 'open')
+            ->paginate(10);
+
+        return view('requests.index', ['requests' => $requests]);
+    }
+
+    public function archived()
+    {
+        $requests = ServiceRequest::latest()
+            ->with('service')
+            ->where('status', 'closed')
+            ->paginate(10);
+
+        return view('requests.archived', ['requests' => $requests]);
     }
 
     /**
@@ -41,12 +58,21 @@ class RequestsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $request = ServiceRequest::with('service')->findOrFail($id);
+
+        auth()
+            ->user()
+            ->notifications
+            ->where('data.service_request_id', $id)
+            ->each
+            ->update(['read_at' => Carbon::now()]);
+
+        return view('requests.show', ['request' => $request]);
     }
 
     /**
