@@ -38,7 +38,17 @@
                     <ul class="nav navbar-nav">
                         &nbsp;@if(Auth::check())
                               <li><a href="{{route('services.index')}}">Services</a></li>
-                              <li><a href="{{route('requests.index')}}">Requests</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        Requests
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{route('requests.index')}}">Pending requests</a></li>
+                                        <li><a href="{{route('requests.archived')}}">Archived requests</a></li>
+                                    </ul>
+                                </li>
                           @endif
                     </ul>
 
@@ -52,14 +62,14 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <span class="label label-danger label-as-badge">
-                                        {{Auth::user()->notifications->count() > 0 ?
-                                            Auth::user()->notifications->count() : ''}}
+                                        {{Auth::user()->unreadNotifications->count() > 0 ?
+                                            Auth::user()->unreadNotifications->count() : ''}}
                                     </span>
                                     <i class="glyphicon glyphicon-bell"></i> <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    @forelse(Auth::user()->notifications as $notification)
+                                    @forelse(Auth::user()->unreadNotifications as $notification)
                                         @include('notifications.' . snake_case(class_basename($notification->type)))
                                         <li role="separator" class="divider"></li>
                                     @empty
@@ -74,6 +84,8 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{route('profile')}}">Edit profile</a></li>
+                                    <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
