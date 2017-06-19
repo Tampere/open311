@@ -8,6 +8,8 @@ Route::get('/', function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/profile', 'HomeController@show')->name('profile');
     Route::resource('/services', 'Admin\ServicesController');
+    Route::get('/requests/archived', 'Admin\RequestsController@archived')->name('requests.archived');
     Route::resource('/requests', 'Admin\RequestsController');
 });
