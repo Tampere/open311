@@ -104,6 +104,7 @@ class ServicesController extends Controller
         if(request()->has('keywords')) {
             $keywords = explode(',', request()->get('keywords'));
             foreach($keywords as $keyword) {
+                if(strlen(trim($keyword)) == 0) continue;
                 $keys[] = Keyword::firstOrCreate(['name' => $keyword])->id;
             }
 
