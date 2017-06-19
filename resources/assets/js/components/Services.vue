@@ -240,8 +240,8 @@
                 }).then(response => {
                     this.resetAndClose();
                     flash("Service modifications saved");
-                    this.items.splice(this.index_to_edit, 1);
-                    this.items.push(response.data);
+                    this.items[this.index_to_edit] = response.data;
+
                 }).catch(error => {
                     this.errors = error.response.data;
                 });
