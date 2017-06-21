@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Filters\RequestFilters;
 use App\Http\Requests\ServiceRequest;
+use App\Notifications\ServiceRequestSubmitted;
 use App\Request;
 use App\Transformers\ServiceRequestTransformer;
+use App\User;
 
 class RequestsController extends Controller
 {
@@ -62,6 +64,12 @@ class RequestsController extends Controller
     public function store(ServiceRequest $request)
     {
         $serviceRequest = $request->persist();
+
+        $users = User::all();
+
+        foreach($users as $user) {
+            $user->notify(new ServiceRequestSubmitted($serviceRequest));
+        }
 
         return response()->json([
             'service_request_id' => $serviceRequest->service_request_id,
