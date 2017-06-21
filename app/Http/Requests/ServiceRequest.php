@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Request;
+use App\RequestPhoto;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ServiceRequest extends FormRequest
@@ -24,7 +25,7 @@ class ServiceRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'service_code' => 'required|exists:services',
             'description' => 'required|min:10|max:5000',
             'title' => 'max:255',
@@ -38,11 +39,18 @@ class ServiceRequest extends FormRequest
             'phone' => 'max:255',
             'media_url' => 'max:255',
         ];
+
+        $photos = count($this->input('media'));
+        foreach (range(0, $photos) as $index) {
+            $rules['media.' . $index] = 'image|mimes:jpeg,bmp,png|max:2000';
+        }
+
+        return $rules;
     }
 
     public function persist()
     {
-        return Request::create([
+        $request = Request::create([
             'service_code' => $this->service_code,
             'description' => $this->description,
             'title' => $this->title ?: null,
@@ -55,6 +63,19 @@ class ServiceRequest extends FormRequest
             'phone' => $this->phone ?: null,
             'media_url' => $this->media_url ?: null,
         ]);
+
+        if($this->media && count($this->media) > 0) {
+            foreach ($this->media as $photo) {
+                $filename = $photo->store('public');
+                preg_match('/public\/(.*)/', $filename, $matches);
+                RequestPhoto::create([
+                    'service_request_id' => $request->service_request_id,
+                    'filename' => $matches[1]
+                ]);
+            }
+        }
+
+        return $request;
     }
 
     public function response(array $errors)
