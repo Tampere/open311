@@ -8,7 +8,10 @@ Route::get('/', function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/profile', 'HomeController@show')->name('profile');
+    Route::get('/profile', 'HomeController@profile')->name('profile');
+    Route::get('/users', 'HomeController@userslist')->name('users');
+    Route::put('/users/{user}', 'HomeController@update');
+    Route::delete('/users/{user}', 'HomeController@destroy');
     Route::resource('/services', 'Admin\ServicesController');
     Route::get('/requests/archived', 'Admin\RequestsController@archived')->name('requests.archived');
     Route::resource('/requests', 'Admin\RequestsController');
