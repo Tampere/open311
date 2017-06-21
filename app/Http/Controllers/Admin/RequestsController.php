@@ -17,7 +17,7 @@ class RequestsController extends Controller
     public function index()
     {
         $requests = ServiceRequest::latest()
-            ->with('service')
+            ->with(['service', 'photos'])
             ->where('status', 'open')
             ->paginate(10);
 
@@ -27,7 +27,7 @@ class RequestsController extends Controller
     public function archived()
     {
         $requests = ServiceRequest::latest()
-            ->with('service')
+            ->with(['service', 'photos'])
             ->where('status', 'closed')
             ->paginate(10);
 
@@ -63,7 +63,8 @@ class RequestsController extends Controller
      */
     public function show($id)
     {
-        $request = ServiceRequest::with('service')->findOrFail($id);
+        $request = ServiceRequest::with(['service', 'photos'])
+            ->findOrFail($id);
 
         auth()
             ->user()
