@@ -37,7 +37,11 @@ class HomeController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $user->update($request->only(['name', 'email', 'password']));
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
         return redirect('users')
             ->with('status', 'User updated.');
