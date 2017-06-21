@@ -25,7 +25,8 @@ class RequestsController extends Controller
             return $this->showMany(request()->get('service_request_id'), $extension);
         }
 
-        $requests = Request::with('service')->latest();
+        $requests = Request::with(['service', 'photos'])
+            ->latest();
 
         // If all lat, long and radii are present, we can calculate distance. Individually each are worthless.
         if(request()->has(['lat', 'long', 'radius'])) {
@@ -52,7 +53,8 @@ class RequestsController extends Controller
     {
         $this->checkExtension($extension);
 
-        $request = Request::findOrFail($service_request_id);
+        $request = Request::with('photos')
+            ->findOrFail($service_request_id);
 
         return fractal($request, new ServiceRequestTransformer);
     }
@@ -90,7 +92,9 @@ class RequestsController extends Controller
             $ids = $service_request_id;
         }
 
-        $request = Request::whereIn('service_request_id', $ids)->get();
+        $request = Request::with('photos')
+            ->whereIn('service_request_id', $ids)
+            ->get();
 
         return fractal($request, new ServiceRequestTransformer);
     }
