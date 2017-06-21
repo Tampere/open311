@@ -89,13 +89,17 @@ class RequestsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $formRequest
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $formRequest, $id)
     {
-        //
+        $request = ServiceRequest::with('service')->findOrFail($id);
+
+        $request->update(['status' => 'closed']);
+
+        return view('requests.show', ['request' => $request, 'status' => 'Service request marked as closed.']);
     }
 
     /**
@@ -106,6 +110,9 @@ class RequestsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ServiceRequest::destroy($id);
+
+        return redirect('requests')
+            ->with('status', 'Service request deleted.');
     }
 }
