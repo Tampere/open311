@@ -85,6 +85,8 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{route('profile')}}">Edit profile</a></li>
                                     <li role="separator" class="divider"></li>
+                                    <li><a href="{{route('users')}}">Manage users</a></li>
+                                    <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
