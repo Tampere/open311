@@ -72,6 +72,16 @@
                 <th scope="row">Media url</th>
                 <td>{{$request->media_url}}</td>
             </tr>
+            <tr>
+                <th scope="row">Media urls</th>
+                <td>
+                    @if($request->photos)
+                        @foreach($request->photos as $photo)
+                            <img src="{{asset('storage/'.$photo->filename)}}" alt="{{$photo->filename}}" width="150">
+                        @endforeach
+                    @endif
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
