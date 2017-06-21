@@ -15,7 +15,7 @@ class ServiceRequestTransformer extends TransformerAbstract
      */
     public function transform(Request $request)
     {
-        return [
+        $transforms = [
             'service_request_id' => $request->service_request_id,
             'service_code' => $request->service_code,
             'service_name' => $request->service->service_name,
@@ -36,5 +36,13 @@ class ServiceRequestTransformer extends TransformerAbstract
             'requested_datetime' => $request->created_at->toW3cString(),
             'updated_datetime' => $request->updated_at->toW3cString(),
         ];
+
+        if(count($request->photos) > 0) {
+            $transforms['extended_attributes'] = [
+                'media_urls' => $request->photos->pluck('filename'),
+            ];
+        }
+
+        return $transforms;
     }
 }
