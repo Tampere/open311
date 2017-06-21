@@ -5,9 +5,20 @@
                 {{$request->service_request_id}}
             </a>
             <small>submitted {{$request->created_at->diffForHumans() }}</small>
-            <span class="pull-right">
-                <a class="text-info" href="#"><i class="glyphicon glyphicon-check"></i></a>
-                <a class="text-danger" href="#"><i class="glyphicon glyphicon-trash"></i></a>
+
+            <span style="display: flex;" class="pull-right">
+                @unless($request->status == 'closed')
+                    <form class="form" action="{{url('requests/' . $request->service_request_id)}}" method="POST">
+                        {{csrf_field()}}
+                        {{method_field('PUT')}}
+                        <button type="submit" class="btn btn-xs btn-primary" title="Mark service request as closed"><i class="glyphicon glyphicon-check"></i></button>
+                    </form>
+                @endunless
+                <form class="form" action="{{url('requests/' . $request->service_request_id)}}" method="POST">
+                    {{csrf_field()}}
+                    {{method_field('DELETE')}}
+                    <button type="submit" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                </form>
             </span>
         </h3>
     </div>
@@ -28,6 +39,10 @@
                         {{$request->service_request_id}}
                     </a>
                 </td>
+            </tr>
+            <tr>
+                <th scope="row">Status</th>
+                <td>{{$request->status}}</td>
             </tr>
             <tr>
                 <th scope="row">Service name</th>

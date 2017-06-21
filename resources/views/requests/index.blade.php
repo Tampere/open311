@@ -6,6 +6,8 @@
             <div class="col-md-12">
                 <h1>Pending requests</h1>
 
+                @include('layouts.status_message')
+
                 @forelse ($requests as $request)
                     @include('requests.one', ['class' => 'panel-primary'])
                 @empty
