@@ -16,7 +16,7 @@ class CreateRequestsTable extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->uuid('service_request_id');
             $table->string('service_code');
-            $table->string('status')->default('open');
+            $table->string('status')->default('pending');
             $table->text('status_notes')->nullable();
             $table->string('agency_responsible')->nullable();
             $table->text('description');

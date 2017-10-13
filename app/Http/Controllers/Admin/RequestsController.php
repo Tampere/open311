@@ -18,7 +18,7 @@ class RequestsController extends Controller
     {
         $requests = ServiceRequest::latest()
             ->with(['service', 'photos'])
-            ->where('status', 'open')
+            ->whereIn('status', ['pending', 'open'])
             ->paginate(10);
 
         return view('requests.index', ['requests' => $requests]);
@@ -32,27 +32,6 @@ class RequestsController extends Controller
             ->paginate(10);
 
         return view('requests.archived', ['requests' => $requests]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
