@@ -8,7 +8,7 @@
 
                 <h1><a href="{{route('requests.index')}}">&laquo; Back to listing</a></h1>
 
-                @include('requests.one-panel')
+                <request-view :request="{{$request}}"></request-view>
             </div>
         </div>
     </div>

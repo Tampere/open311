@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Request as ServiceRequest;
+use App\RequestUpdate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -16,22 +17,26 @@ class RequestsController extends Controller
      */
     public function index()
     {
-        $requests = ServiceRequest::latest()
-            ->with(['service', 'photos'])
-            ->whereIn('status', ['pending', 'open'])
-            ->paginate(10);
+        if(request()->expectsJson()) {
+            return ServiceRequest::latest()
+                ->with(['service', 'photos'])
+                ->whereIn('status', ['pending', 'open'])
+                ->paginate(10);
+        }
 
-        return view('requests.index', ['requests' => $requests]);
+        return view('requests.index', ['title' => 'Pending and open requests']);
     }
 
     public function archived()
     {
-        $requests = ServiceRequest::latest()
-            ->with(['service', 'photos'])
-            ->where('status', 'closed')
-            ->paginate(10);
+        if(request()->expectsJson()) {
+            return ServiceRequest::latest()
+                ->with(['service', 'photos'])
+                ->where('status', 'closed')
+                ->paginate(10);
+        }
 
-        return view('requests.archived', ['requests' => $requests]);
+        return view('requests.index', ['title' => 'Archived requests']);
     }
 
     /**
@@ -56,30 +61,35 @@ class RequestsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $formRequest
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $formRequest, $id)
+    public function update(ServiceRequest $request)
     {
-        $request = ServiceRequest::with('service')->findOrFail($id);
+        $payload = request()->all();
+        $field = array_keys($payload)[0];
 
-        $request->update(['status' => 'closed']);
+        RequestUpdate::create([
+            'service_request_id' => $request->service_request_id,
+            'old_value' => json_encode([$field => $request->$field]),
+            'new_value' => json_encode([$field => request()->get($field)]),
+            'user_id' => auth()->id()
+        ]);
 
-        return view('requests.show', ['request' => $request, 'status' => 'Service request marked as closed.']);
+        $request->update(request()->all());
+
+        return response('Request updated', 200);
+    }
+
+    public function activities(ServiceRequest $request)
+    {
+        return RequestUpdate::latest()
+            ->with('user')
+            ->where('service_request_id', $request->service_request_id)
+            ->get();
     }
 
     /**
@@ -88,9 +98,13 @@ class RequestsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ServiceRequest $id)
     {
         ServiceRequest::destroy($id);
+
+        if(request()->expectsJson()) {
+            return response('Service request deleted.', 200);
+        }
 
         return redirect('requests')
             ->with('status', 'Service request deleted.');

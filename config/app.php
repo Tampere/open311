@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Fractal\FractalServiceProvider::class,
 
     ],
@@ -230,6 +231,7 @@ return [
 
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Fractal' => Spatie\Fractal\FractalFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
