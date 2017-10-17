@@ -25,45 +25,6 @@
                         <td>{{data.service_request_id}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Status</th>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <button
-                                    type="button"
-                                    class="btn"
-                                    @click="updateStatus('pending')"
-                                    :class="data.status === 'pending' ? 'btn-primary' : 'btn-default'"
-                                >
-                                    Pending
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn"
-                                    @click="updateStatus('open')"
-                                    :class="data.status === 'open' ? 'btn-primary' : 'btn-default'"
-                                >
-                                    Open
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn"
-                                    @click="updateStatus('closed')"
-                                    :class="data.status === 'closed' ? 'btn-primary' : 'btn-default'"
-                                >
-                                    Closed
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Service name</th>
-                        <td>{{data.service.service_name}}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Agency responsible</th>
-                        <td>{{data.agency_responsible}}</td>
-                    </tr>
-                    <tr>
                         <th scope="row">Title</th>
                         <td>
                             <span class="editable" @click="editTitle = true" v-show="!editTitle">
@@ -74,6 +35,25 @@
                                 v-model="data.title"
                                 v-show="editTitle"
                                 v-on:keyup.enter="updateTitle">
+                            <div class="btn-group" role="group" style="float: right">
+                                <button
+                                    v-if="!editTitle"
+                                    class="btn btn-xs btn-primary"
+                                    @click="editTitle = true">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                                <button
+                                    v-if="editTitle"
+                                    class="btn btn-xs btn-primary"
+                                    @click="updateTitle">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                                </button>
+                                <button
+                                    class="btn btn-xs btn-danger"
+                                    @click="clearTitle">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -91,6 +71,20 @@
                                 v-show="editDescription"
                                 v-on:keyup.enter="updateDescription">
                             </textarea>
+                            <div class="btn-group" role="group" style="float: right">
+                                <button
+                                    v-if="editDescription"
+                                    class="btn btn-xs btn-primary"
+                                    @click="updateDescription">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                                </button>
+                                <button
+                                    v-if="!editDescription"
+                                    class="btn btn-xs btn-primary"
+                                    @click="editDescription = true">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -126,6 +120,88 @@
                             </div>
                         </td>
                     </tr>
+                    <tr class="segment">
+                        <th scope="row"></th>
+                        <td><strong>Specify response to request</strong></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Service name</th>
+                        <td>{{data.service.service_name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Agency responsible</th>
+                        <td>{{data.agency_responsible}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <button
+                                        type="button"
+                                        class="btn"
+                                        @click="updateStatus('pending')"
+                                        :class="data.status === 'pending' ? 'btn-danger' : 'btn-default'"
+                                >
+                                    Pending
+                                </button>
+                                <button
+                                        type="button"
+                                        class="btn"
+                                        @click="updateStatus('open')"
+                                        :class="data.status === 'open' ? 'btn-primary' : 'btn-default'"
+                                >
+                                    Open
+                                </button>
+                                <button
+                                        type="button"
+                                        class="btn"
+                                        @click="updateStatus('closed')"
+                                        :class="data.status === 'closed' ? 'btn-primary' : 'btn-default'"
+                                >
+                                    Closed
+                                </button>
+                            </div>
+                            <p v-show="data.status === 'pending'">
+                                <em>Requests in pending state are not shown on the API.</em>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status notes</th>
+                        <td>
+                            <span class="editable" @click="editStatusNotes = true" v-show="!editStatusNotes">
+                                {{data.status_notes}}
+                            </span>
+                            <textarea
+                                    name="status_notes"
+                                    id="status_notes"
+                                    cols="90"
+                                    rows="5"
+                                    v-model="data.status_notes"
+                                    v-show="editStatusNotes"
+                                    v-on:keyup.enter="updateStatusNotes">
+                                </textarea>
+                            <div class="btn-group" role="group" style="float: right">
+                                <button
+                                        v-if="editStatusNotes"
+                                        class="btn btn-xs btn-primary"
+                                        @click="updateStatusNotes">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                                </button>
+                                <button
+                                        v-if="!editStatusNotes"
+                                        class="btn btn-xs btn-primary"
+                                        @click="editStatusNotes = true">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                                <button
+                                        class="btn btn-xs btn-danger"
+                                        @click="clearStatusNotes">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -154,6 +230,7 @@ export default {
             data: this.request,
             editTitle: false,
             editDescription: false,
+            editStatusNotes: false,
         }
     },
 
@@ -187,6 +264,21 @@ export default {
             this.editDescription = false;
         },
 
+        updateStatusNotes() {
+            this.update({status_notes: this.data.status_notes});
+            this.editStatusNotes = false;
+        },
+
+        clearStatusNotes() {
+            this.update({status_notes: ''});
+            this.data.status_notes = '';
+        },
+
+        clearTitle() {
+            this.update({title: ''});
+            this.data.title = '';
+        },
+
         destroy() {
             if(confirm('Are you sure you want to destroy this request?')) {
                 axios.delete('/requests/' + this.data.service_request_id)
@@ -204,4 +296,8 @@ export default {
     color: #2a88bd;
     border-bottom: 1px dotted #2a88bd;
 }
+
+    .segment {
+        background-color: #98cbe8;
+    }
 </style>

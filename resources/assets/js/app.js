@@ -27,6 +27,7 @@ Vue.component('Flash', require('./components/Flash.vue'));
 Vue.component('Services', require('./components/Services.vue'));
 Vue.component('Requests', require('./components/Requests.vue'));
 Vue.component('RequestView', require('./components/RequestView.vue'));
+Vue.component('ChartRenderer', require('./components/ChartRenderer.vue'));
 
 Vue.filter('formatTimestamp', function(value, format) {
     if (!value) return '';

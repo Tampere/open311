@@ -3,7 +3,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th><input title="Select all" @click="toggleSelectAll()" type="checkbox"></th>
+                <th><input title="Select all" @click="toggleSelectAll" type="checkbox" v-model="selectingAll"></th>
                 <th>Created at</th>
                 <th>Title</th>
                 <th>Description</th>
@@ -14,10 +14,13 @@
 
             <tbody>
                 <request
+                        v-if="requests.data.length > 0"
                         v-for="request in requests.data"
                         :key="request.service_request_id"
                         :data="request"
-                        v-if="requests.data.length > 0">
+                        @update-required="getResults"
+                        @selected="addToSelected"
+                        @deselected="removeFromSelected">
                 </request>
 
                 <tr v-if="requests.data.length === 0">
@@ -26,7 +29,12 @@
             </tbody>
         </table>
 
-        <button class="btn btn-danger" disabled>Poista valitut</button>
+        <button
+                class="btn btn-danger"
+                :disabled="selectedRequests.length === 0"
+                @click="deleteAll">
+            Delete selected requests
+        </button>
 
         <p class="text-muted"><em>Showing {{requests.data.length}} out of {{requests.total}} pending or open requests</em></p>
 
@@ -46,6 +54,8 @@ export default {
             requests: {
                 data: {}
             },
+            selectedRequests: [],
+            selectingAll: false
         }
     },
 
@@ -59,6 +69,13 @@ export default {
                 page = 1;
             }
 
+            this.requests = {
+                data: {}
+            };
+
+            this.selectedRequests = [];
+            this.selectingAll = false;
+
             axios.get('?page=' + page)
                 .then(response => {
                     this.requests = response.data;
@@ -66,7 +83,41 @@ export default {
         },
 
         toggleSelectAll() {
-            this.$emit('toggle-select');
+            if(!this.selectingAll) {
+                this.selectingAll = true;
+                window.events.$emit('set-all-selected');
+                this.selectedRequests = [];
+                this.requests.data.forEach(request => {
+                    this.selectedRequests.push(request.service_request_id);
+                });
+            } else {
+                this.selectingAll = false;
+                this.selectedRequests = [];
+                window.events.$emit('set-all-deselected');
+            }
+        },
+
+        addToSelected(data) {
+            this.selectedRequests.push(data.id);
+        },
+
+        removeFromSelected(data) {
+            let index = this.selectedRequests.indexOf(data.id);
+            if(index > -1) {
+                this.selectedRequests.splice(index, 1);
+            }
+            this.selectingAll = false;
+        },
+
+        deleteAll() {
+            if(confirm('Are you sure you want to destroy all selected request?')) {
+                axios.post('/delete-requests', {ids: this.selectedRequests})
+                    .then((response) => {
+                        console.log(response);
+                    });
+
+                this.getResults();
+            }
         }
     }
 }

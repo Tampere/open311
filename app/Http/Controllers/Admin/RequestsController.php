@@ -95,12 +95,12 @@ class RequestsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param ServiceRequest|int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceRequest $id)
+    public function destroy(ServiceRequest $request)
     {
-        ServiceRequest::destroy($id);
+        $request->delete();
 
         if(request()->expectsJson()) {
             return response('Service request deleted.', 200);
@@ -108,5 +108,17 @@ class RequestsController extends Controller
 
         return redirect('requests')
             ->with('status', 'Service request deleted.');
+    }
+
+    public function destroyRequests()
+    {
+        ServiceRequest::destroy(request()->get('ids'));
+
+        if(request()->expectsJson()) {
+            return response('Service requests deleted.', 200);
+        }
+
+        return redirect('requests')
+            ->with('status', 'Service requests deleted.');
     }
 }

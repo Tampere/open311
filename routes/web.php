@@ -15,5 +15,6 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('/services', 'Admin\ServicesController');
     Route::get('/requests/archived', 'Admin\RequestsController@archived')->name('requests.archived');
     Route::resource('/requests', 'Admin\RequestsController');
+    Route::post('/delete-requests', 'Admin\RequestsController@destroyRequests');
     Route::get('/requests/{request}/activity', 'Admin\RequestsController@activities');
 });

@@ -36,7 +36,7 @@ class ServiceRequestSubmitted extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -48,9 +48,10 @@ class ServiceRequestSubmitted extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('A new request has arrived.')
+                    ->line($this->description)
+                    ->action('Click here to see it', url('/requests/'.$this->service_request_id))
+                    ->line('Cheers!');
     }
 
     /**
