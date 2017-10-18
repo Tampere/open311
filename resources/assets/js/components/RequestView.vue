@@ -110,13 +110,21 @@
                     <tr>
                         <th scope="row">Media urls</th>
                         <td>
-                            <div v-if="data.photos">
+                            <div
+                                v-if="data.photos"
+                                v-for="photo in data.photos"
+                                :key="photo.id">
                                 <img
-                                    v-for="photo in data.photos"
-                                    :key="photo.id"
                                     :src="'/storage/'+photo.filename"
                                     :alt="photo.filename"
                                     width="150">
+                                <div class="btn-group" role="group" style="float: right">
+                                    <button
+                                            class="btn btn-xs btn-danger"
+                                            @click="deleteImage(photo)">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </button>
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -279,11 +287,23 @@ export default {
             this.data.title = '';
         },
 
+        deleteImage(photo) {
+            if(confirm('Are you sure you want to destroy this image?')) {
+                axios.delete('/images/' + photo.id)
+                    .then(response => {
+                        window.flash(response.data);
+
+                        let index = this.data.photos.indexOf(photo);
+                        this.data.photos.splice(index, 1);
+                    });
+            }
+        },
+
         destroy() {
             if(confirm('Are you sure you want to destroy this request?')) {
                 axios.delete('/requests/' + this.data.service_request_id)
                     .then((response) => {
-                        console.log(response);
+                        window.flash(response.data)
                     });
             }
         }
