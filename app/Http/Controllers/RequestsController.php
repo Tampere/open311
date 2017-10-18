@@ -26,6 +26,7 @@ class RequestsController extends Controller
         }
 
         $requests = Request::with(['service', 'photos'])
+            ->where('status', '!=', 'pending')
             ->latest();
 
         // If all lat, long and radii are present, we can calculate distance. Individually each are worthless.

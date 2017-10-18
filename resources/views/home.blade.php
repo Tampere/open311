@@ -17,7 +17,7 @@
                                 @if($pending->count() > 0)
                                     <ul>
                                         @foreach($pending->take(5) as $item)
-                                            <li><a href="/requests/{{$item->service_request_id}}">{{$item->service_request_id}}</a></li>
+                                            <li><a href="/requests/{{$item->service_request_id}}">{{str_limit($item->description, 100)}}</a></li>
                                         @endforeach
                                     </ul>
                                 @endif
@@ -31,7 +31,7 @@
                             @if($open->count() > 0)
                                 <ul>
                                     @foreach($open->take(5) as $item)
-                                        <li><a href="/requests/{{$item->service_request_id}}">{{$item->service_request_id}}</a></li>
+                                        <li><a href="/requests/{{$item->service_request_id}}">{{str_limit($item->description, 100)}}</a></li>
                                     @endforeach
                                 </ul>
                                 @endif
@@ -45,7 +45,7 @@
                             @if($closed->count() > 0)
                                 <ul>
                                     @foreach($closed->take(5) as $item)
-                                        <li><a href="/requests/{{$item->service_request_id}}">{{$item->service_request_id}}</a></li>
+                                        <li><a href="/requests/{{$item->service_request_id}}">{{str_limit($item->description, 100)}}</a></li>
                                     @endforeach
                                 </ul>
                                 @endif
@@ -67,7 +67,7 @@
                     <div class="list-group">
                     @forelse($notifications as $notification)
                         <a href="/requests/{{$notification['data']['service_request_id']}}" class="list-group-item">
-                            <strong>New request:</strong> {{$notification['data']['service_request_id']}}<br>
+                            <strong>New request:</strong> {{str_limit($notification['data']['description'], 100)}}<br>
                             <em>submitted on </em> {{$notification->created_at}}
                         </a>
                     @empty

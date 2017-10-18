@@ -34,8 +34,11 @@ class ServiceRequestTransformer extends TransformerAbstract
         ];
 
         if(count($request->photos) > 0) {
+
             $transforms['extended_attributes'] = [
-                'media_urls' => $request->photos->pluck('filename'),
+                'media_urls' => $request->photos->pluck('filename')->map(function($element) {
+                    return asset('/storage/' . $element);
+                })
             ];
         }
 

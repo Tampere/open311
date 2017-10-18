@@ -25,7 +25,8 @@ class HomeController extends Controller
             'closed' => $closed->count()
         ];
 
-        $notifications = auth()->user()->notifications()->get();
+        $notifications = auth()->user()->unreadNotifications()->get();
+        $notifications->markAsRead();
 
         return view('home')
             ->with('pending', $pending)
