@@ -54234,7 +54234,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('img', {
       key: photo.id,
       attrs: {
-        "src": photo.filename,
+        "src": '/storage/' + photo.filename,
         "alt": photo.filename,
         "width": "150"
       }
