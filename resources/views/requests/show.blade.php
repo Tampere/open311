@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 @include('layouts.status_message')
 
-                <h1><a href="{{route('requests.index')}}">&laquo; Back to listing</a></h1>
+                <h1><a href="{{route('requests.index')}}">&laquo; Takaisin listaukseen</a></h1>
 
                 <request-view :request="{{$request}}"></request-view>
             </div>

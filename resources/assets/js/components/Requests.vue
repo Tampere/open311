@@ -4,11 +4,11 @@
             <thead>
             <tr>
                 <th><input title="Select all" @click="toggleSelectAll" type="checkbox" v-model="selectingAll"></th>
-                <th>Created at</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>Lisätty</th>
+                <th>Otsikko</th>
+                <th>Kuvaus</th>
+                <th>Tila</th>
+                <th>Toiminnot</th>
             </tr>
             </thead>
 
@@ -24,7 +24,7 @@
                 </request>
 
                 <tr v-if="requests.data.length === 0">
-                    <td colspan="6"><em>No pending or open requests</em></td>
+                    <td colspan="6"><em>Ei odottavia tai avoimia palautteita</em></td>
                 </tr>
             </tbody>
         </table>
@@ -33,10 +33,10 @@
                 class="btn btn-danger"
                 :disabled="selectedRequests.length === 0"
                 @click="deleteAll">
-            Delete selected requests
+            Poista valitut palautteet
         </button>
 
-        <p class="text-muted"><em>Showing {{requests.data.length}} out of {{requests.total}} pending or open requests</em></p>
+        <p class="text-muted"><em>Näytetään {{requests.data.length}} palaute {{requests.total}} odottavasta tai avoimesta palautteesta.</em></p>
 
         <pagination :data="requests" v-on:pagination-change-page="getResults"></pagination>
     </div>
@@ -110,7 +110,7 @@ export default {
         },
 
         deleteAll() {
-            if(confirm('Are you sure you want to destroy all selected request?')) {
+            if(confirm('Haluatko varmasti poistaa kaikki valitut palautteet?')) {
                 axios.post('/delete-requests', {ids: this.selectedRequests})
                     .then((response) => {
                         console.log(response);

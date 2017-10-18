@@ -25,7 +25,7 @@ class RequestsController extends Controller
                 ->paginate(10);
         }
 
-        return view('requests.index', ['title' => 'Pending and open requests']);
+        return view('requests.index', ['title' => 'Odottavat ja avoimet palautteet']);
     }
 
     public function archived()
@@ -37,7 +37,7 @@ class RequestsController extends Controller
                 ->paginate(10);
         }
 
-        return view('requests.index', ['title' => 'Archived requests']);
+        return view('requests.index', ['title' => 'Suljetut palautteet']);
     }
 
     /**
@@ -88,7 +88,7 @@ class RequestsController extends Controller
             }
         }
 
-        return response('Request updated', 200);
+        return response('Palaute päivitetty', 200);
     }
 
     public function activities(ServiceRequest $request)
@@ -110,11 +110,11 @@ class RequestsController extends Controller
         $request->delete();
 
         if(request()->expectsJson()) {
-            return response('Service request deleted.', 200);
+            return response('Palaute poistettu.', 200);
         }
 
         return redirect('requests')
-            ->with('status', 'Service request deleted.');
+            ->with('status', 'Palaute poistettu.');
     }
 
     public function destroyRequests()
@@ -122,10 +122,10 @@ class RequestsController extends Controller
         ServiceRequest::destroy(request()->get('ids'));
 
         if(request()->expectsJson()) {
-            return response('Service requests deleted.', 200);
+            return response('Palautteet poistettu.', 200);
         }
 
         return redirect('requests')
-            ->with('status', 'Service requests deleted.');
+            ->with('status', 'Palautteet poistettu.');
     }
 }

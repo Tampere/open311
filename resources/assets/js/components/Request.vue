@@ -7,12 +7,12 @@
         </td>
         <td>{{data.description | truncate(30) }}</td>
         <td>
-            <span v-tooltip="'Requests in pending state are not shown on API'" class="label" :class="data.status === 'pending' ? 'label-info' : 'label-primary'">
+            <span v-tooltip="'Odottavat palautteet eivät näy rajapinnassa.'" class="label" :class="data.status === 'pending' ? 'label-info' : 'label-primary'">
                 {{data.status}}
             </span>
         </td>
         <td>
-            <button @click="destroy" class="btn btn-danger btn-xs">Delete request</button>
+            <button @click="destroy" class="btn btn-danger btn-xs">Poista palaute</button>
         </td>
     </tr>
 </template>
@@ -49,7 +49,7 @@ export default {
         },
 
         destroy() {
-            if(confirm('Are you sure you want to destroy this request?')) {
+            if(confirm('Haluatko varmasti poistaa tämän palautteen?')) {
                 axios.delete('/requests/' + this.data.service_request_id);
                 this.$emit('update-required');
             }

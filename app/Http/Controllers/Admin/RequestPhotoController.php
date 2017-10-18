@@ -15,6 +15,6 @@ class RequestPhotoController extends Controller
 
         $photo->delete();
 
-        return response('File deleted', 200);
+        return response('Kuva poistettu.', 200);
     }
 }

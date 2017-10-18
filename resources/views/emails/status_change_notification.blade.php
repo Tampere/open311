@@ -1,3 +1,3 @@
-<h1>The status of your request has changed.</h1>
+<h1>Palautteesi tila on muuttunut.</h1>
 
 {{$request}}

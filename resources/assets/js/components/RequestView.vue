@@ -4,19 +4,19 @@
             <div class="panel-heading">
                 <h3 class="panel-title">
                     {{data.title}} <small>({{data.service_request_id}})</small>
-                    <small>submitted {{data.created_at | formatTimestamp('DD.MM.YYYY HH:mm') }}</small>
+                    <small>lisätty {{data.created_at | formatTimestamp('DD.MM.YYYY HH:mm') }}</small>
                 </h3>
             </div>
 
             <div class="panel-body">
-                    <button class="btn btn-primary" @click="approve" v-if="data.status === 'pending'">Approve request</button>
-                    <button class="btn btn-danger" @click="destroy">Destroy request</button>
+                    <button class="btn btn-primary" @click="approve" v-if="data.status === 'pending'">Hyväksy palaute</button>
+                    <button class="btn btn-danger" @click="destroy">Poista palaute</button>
 
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Key</th>
-                        <th>Value</th>
+                        <th>Avain</th>
+                        <th>Arvo</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -25,7 +25,7 @@
                         <td>{{data.service_request_id}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Title</th>
+                        <th scope="row">Otsikko</th>
                         <td>
                             <span class="editable" @click="editTitle = true" v-show="!editTitle">
                                 {{data.title}}
@@ -57,7 +57,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">Description</th>
+                        <th scope="row">Kuvaus</th>
                         <td>
                             <span class="editable" @click="editDescription = true" v-show="!editDescription">
                                 {{data.description}}
@@ -88,12 +88,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">Location</th>
-                        <td><strong>Address: </strong>{{data.address_string}} <strong>Zip: </strong>{{data.zip_code}} <strong>Geo: </strong>{{data.location}}</td>
+                        <th scope="row">Sijainti</th>
+                        <td><strong>Osoite: </strong>{{data.address_string}} <strong>Postinumero: </strong>{{data.zip_code}} <strong>Geo: </strong>{{data.location}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Submitted by</th>
-                        <td><strong>Name: </strong>{{data.first_name}} {{data.last_name}} <strong>Email: </strong>{{data.email}} <strong>Phone: </strong>{{data.phone}}</td>
+                        <th scope="row">Lisääjä</th>
+                        <td><strong>Nimi: </strong>{{data.first_name}} {{data.last_name}} <strong>Email: </strong>{{data.email}} <strong>Puhelin: </strong>{{data.phone}}</td>
                     </tr>
                     <tr>
                         <th scope="row">Media url</th>
@@ -130,18 +130,18 @@
                     </tr>
                     <tr class="segment">
                         <th scope="row"></th>
-                        <td><strong>Specify response to request</strong></td>
+                        <td><strong>Palautteen hallinta</strong></td>
                     </tr>
                     <tr>
-                        <th scope="row">Service name</th>
+                        <th scope="row">Palvelun nimi</th>
                         <td>{{data.service.service_name}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Agency responsible</th>
+                        <th scope="row">Vastuuosasto</th>
                         <td>{{data.agency_responsible}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">Status</th>
+                        <th scope="row">Tila</th>
                         <td>
                             <div class="btn-group" role="group">
                                 <button
@@ -150,7 +150,7 @@
                                         @click="updateStatus('pending')"
                                         :class="data.status === 'pending' ? 'btn-danger' : 'btn-default'"
                                 >
-                                    Pending
+                                    Odottaa
                                 </button>
                                 <button
                                         type="button"
@@ -158,7 +158,7 @@
                                         @click="updateStatus('open')"
                                         :class="data.status === 'open' ? 'btn-primary' : 'btn-default'"
                                 >
-                                    Open
+                                    Avoin
                                 </button>
                                 <button
                                         type="button"
@@ -166,16 +166,16 @@
                                         @click="updateStatus('closed')"
                                         :class="data.status === 'closed' ? 'btn-primary' : 'btn-default'"
                                 >
-                                    Closed
+                                    Suljettu
                                 </button>
                             </div>
                             <p v-show="data.status === 'pending'">
-                                <em>Requests in pending state are not shown on the API.</em>
+                                <em>Odottavat palautteet eivät näy rajapinnassa.</em>
                             </p>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">Status notes</th>
+                        <th scope="row">Tilaviesti</th>
                         <td>
                             <span class="editable" @click="editStatusNotes = true" v-show="!editStatusNotes">
                                 {{data.status_notes}}
@@ -288,7 +288,7 @@ export default {
         },
 
         deleteImage(photo) {
-            if(confirm('Are you sure you want to destroy this image?')) {
+            if(confirm('Haluatko varmasti poistaa tämän kuvan?')) {
                 axios.delete('/images/' + photo.id)
                     .then(response => {
                         window.flash(response.data);
@@ -300,7 +300,7 @@ export default {
         },
 
         destroy() {
-            if(confirm('Are you sure you want to destroy this request?')) {
+            if(confirm('Haluatko varmasti poistaa tämän palautteen?')) {
                 axios.delete('/requests/' + this.data.service_request_id)
                     .then((response) => {
                         window.flash(response.data)

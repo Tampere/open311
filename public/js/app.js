@@ -35652,7 +35652,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit(this.selected ? 'selected' : 'deselected', { id: this.data.service_request_id });
         },
         destroy: function destroy() {
-            if (confirm('Are you sure you want to destroy this request?')) {
+            if (confirm('Haluatko varmasti poistaa tämän palautteen?')) {
                 axios.delete('/requests/' + this.data.service_request_id);
                 this.$emit('update-required');
             }
@@ -36007,7 +36007,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteImage: function deleteImage(photo) {
             var _this = this;
 
-            if (confirm('Are you sure you want to destroy this image?')) {
+            if (confirm('Haluatko varmasti poistaa tämän kuvan?')) {
                 axios.delete('/images/' + photo.id).then(function (response) {
                     window.flash(response.data);
 
@@ -36017,7 +36017,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         destroy: function destroy() {
-            if (confirm('Are you sure you want to destroy this request?')) {
+            if (confirm('Haluatko varmasti poistaa tämän palautteen?')) {
                 axios.delete('/requests/' + this.data.service_request_id).then(function (response) {
                     window.flash(response.data);
                 });
@@ -36145,7 +36145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selectingAll = false;
         },
         deleteAll: function deleteAll() {
-            if (confirm('Are you sure you want to destroy all selected request?')) {
+            if (confirm('Haluatko varmasti poistaa kaikki valitut palautteet?')) {
                 axios.post('/delete-requests', { ids: this.selectedRequests }).then(function (response) {
                     console.log(response);
                 });
@@ -88145,19 +88145,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-heading"
   }, [_c('h3', {
     staticClass: "panel-title"
-  }, [_vm._v("\n                " + _vm._s(_vm.data.title) + " "), _c('small', [_vm._v("(" + _vm._s(_vm.data.service_request_id) + ")")]), _vm._v(" "), _c('small', [_vm._v("submitted " + _vm._s(_vm._f("formatTimestamp")(_vm.data.created_at, 'DD.MM.YYYY HH:mm')))])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n                " + _vm._s(_vm.data.title) + " "), _c('small', [_vm._v("(" + _vm._s(_vm.data.service_request_id) + ")")]), _vm._v(" "), _c('small', [_vm._v("lisätty " + _vm._s(_vm._f("formatTimestamp")(_vm.data.created_at, 'DD.MM.YYYY HH:mm')))])])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
   }, [(_vm.data.status === 'pending') ? _c('button', {
     staticClass: "btn btn-primary",
     on: {
       "click": _vm.approve
     }
-  }, [_vm._v("Approve request")]) : _vm._e(), _vm._v(" "), _c('button', {
+  }, [_vm._v("Hyväksy palaute")]) : _vm._e(), _vm._v(" "), _c('button', {
     staticClass: "btn btn-danger",
     on: {
       "click": _vm.destroy
     }
-  }, [_vm._v("Destroy request")]), _vm._v(" "), _c('table', {
+  }, [_vm._v("Poista palaute")]), _vm._v(" "), _c('table', {
     staticClass: "table"
   }, [_vm._m(0), _vm._v(" "), _c('tbody', [_c('tr', [_c('th', {
     attrs: {
@@ -88167,7 +88167,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Title")]), _vm._v(" "), _c('td', [_c('span', {
+  }, [_vm._v("Otsikko")]), _vm._v(" "), _c('td', [_c('span', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -88243,7 +88243,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Description")]), _vm._v(" "), _c('td', [_c('span', {
+  }, [_vm._v("Kuvaus")]), _vm._v(" "), _c('td', [_c('span', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -88315,11 +88315,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Location")]), _vm._v(" "), _c('td', [_c('strong', [_vm._v("Address: ")]), _vm._v(_vm._s(_vm.data.address_string) + " "), _c('strong', [_vm._v("Zip: ")]), _vm._v(_vm._s(_vm.data.zip_code) + " "), _c('strong', [_vm._v("Geo: ")]), _vm._v(_vm._s(_vm.data.location))])]), _vm._v(" "), _c('tr', [_c('th', {
+  }, [_vm._v("Sijainti")]), _vm._v(" "), _c('td', [_c('strong', [_vm._v("Osoite: ")]), _vm._v(_vm._s(_vm.data.address_string) + " "), _c('strong', [_vm._v("Postinumero: ")]), _vm._v(_vm._s(_vm.data.zip_code) + " "), _c('strong', [_vm._v("Geo: ")]), _vm._v(_vm._s(_vm.data.location))])]), _vm._v(" "), _c('tr', [_c('th', {
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Submitted by")]), _vm._v(" "), _c('td', [_c('strong', [_vm._v("Name: ")]), _vm._v(_vm._s(_vm.data.first_name) + " " + _vm._s(_vm.data.last_name) + " "), _c('strong', [_vm._v("Email: ")]), _vm._v(_vm._s(_vm.data.email) + " "), _c('strong', [_vm._v("Phone: ")]), _vm._v(_vm._s(_vm.data.phone))])]), _vm._v(" "), _c('tr', [_c('th', {
+  }, [_vm._v("Lisääjä")]), _vm._v(" "), _c('td', [_c('strong', [_vm._v("Nimi: ")]), _vm._v(_vm._s(_vm.data.first_name) + " " + _vm._s(_vm.data.last_name) + " "), _c('strong', [_vm._v("Email: ")]), _vm._v(_vm._s(_vm.data.email) + " "), _c('strong', [_vm._v("Puhelin: ")]), _vm._v(_vm._s(_vm.data.phone))])]), _vm._v(" "), _c('tr', [_c('th', {
     attrs: {
       "scope": "row"
     }
@@ -88368,15 +88368,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Service name")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.data.service.service_name))])]), _vm._v(" "), _c('tr', [_c('th', {
+  }, [_vm._v("Palvelun nimi")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.data.service.service_name))])]), _vm._v(" "), _c('tr', [_c('th', {
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Agency responsible")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.data.agency_responsible))])]), _vm._v(" "), _c('tr', [_c('th', {
+  }, [_vm._v("Vastuuosasto")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm.data.agency_responsible))])]), _vm._v(" "), _c('tr', [_c('th', {
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Status")]), _vm._v(" "), _c('td', [_c('div', {
+  }, [_vm._v("Tila")]), _vm._v(" "), _c('td', [_c('div', {
     staticClass: "btn-group",
     attrs: {
       "role": "group"
@@ -88392,7 +88392,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateStatus('pending')
       }
     }
-  }, [_vm._v("\n                                Pending\n                            ")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("\n                                Odottaa\n                            ")]), _vm._v(" "), _c('button', {
     staticClass: "btn",
     class: _vm.data.status === 'open' ? 'btn-primary' : 'btn-default',
     attrs: {
@@ -88403,7 +88403,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateStatus('open')
       }
     }
-  }, [_vm._v("\n                                Open\n                            ")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("\n                                Avoin\n                            ")]), _vm._v(" "), _c('button', {
     staticClass: "btn",
     class: _vm.data.status === 'closed' ? 'btn-primary' : 'btn-default',
     attrs: {
@@ -88414,18 +88414,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.updateStatus('closed')
       }
     }
-  }, [_vm._v("\n                                Closed\n                            ")])]), _vm._v(" "), _c('p', {
+  }, [_vm._v("\n                                Suljettu\n                            ")])]), _vm._v(" "), _c('p', {
     directives: [{
       name: "show",
       rawName: "v-show",
       value: (_vm.data.status === 'pending'),
       expression: "data.status === 'pending'"
     }]
-  }, [_c('em', [_vm._v("Requests in pending state are not shown on the API.")])])])]), _vm._v(" "), _c('tr', [_c('th', {
+  }, [_c('em', [_vm._v("Odottavat palautteet eivät näy rajapinnassa.")])])])]), _vm._v(" "), _c('tr', [_c('th', {
     attrs: {
       "scope": "row"
     }
-  }, [_vm._v("Status notes")]), _vm._v(" "), _c('td', [_c('span', {
+  }, [_vm._v("Tilaviesti")]), _vm._v(" "), _c('td', [_c('span', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -88517,7 +88517,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("Key")]), _vm._v(" "), _c('th', [_vm._v("Value")])])])
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Avain")]), _vm._v(" "), _c('th', [_vm._v("Arvo")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('tr', {
     staticClass: "segment"
@@ -88525,7 +88525,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "scope": "row"
     }
-  }), _vm._v(" "), _c('td', [_c('strong', [_vm._v("Specify response to request")])])])
+  }), _vm._v(" "), _c('td', [_c('strong', [_vm._v("Palautteen hallinta")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -88575,7 +88575,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }
-  })]), _vm._v(" "), _c('th', [_vm._v("Created at")]), _vm._v(" "), _c('th', [_vm._v("Title")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', [_vm._v("Status")]), _vm._v(" "), _c('th', [_vm._v("Actions")])])]), _vm._v(" "), _c('tbody', [_vm._l((_vm.requests.data), function(request) {
+  })]), _vm._v(" "), _c('th', [_vm._v("Lisätty")]), _vm._v(" "), _c('th', [_vm._v("Otsikko")]), _vm._v(" "), _c('th', [_vm._v("Kuvaus")]), _vm._v(" "), _c('th', [_vm._v("Tila")]), _vm._v(" "), _c('th', [_vm._v("Toiminnot")])])]), _vm._v(" "), _c('tbody', [_vm._l((_vm.requests.data), function(request) {
     return (_vm.requests.data.length > 0) ? _c('request', {
       key: request.service_request_id,
       attrs: {
@@ -88595,9 +88595,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.deleteAll
     }
-  }, [_vm._v("\n        Delete selected requests\n    ")]), _vm._v(" "), _c('p', {
+  }, [_vm._v("\n        Poista valitut palautteet\n    ")]), _vm._v(" "), _c('p', {
     staticClass: "text-muted"
-  }, [_c('em', [_vm._v("Showing " + _vm._s(_vm.requests.data.length) + " out of " + _vm._s(_vm.requests.total) + " pending or open requests")])]), _vm._v(" "), _c('pagination', {
+  }, [_c('em', [_vm._v("Näytetään " + _vm._s(_vm.requests.data.length) + " palaute " + _vm._s(_vm.requests.total) + " odottavasta tai avoimesta palautteesta.")])]), _vm._v(" "), _c('pagination', {
     attrs: {
       "data": _vm.requests
     },
@@ -88610,7 +88610,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "colspan": "6"
     }
-  }, [_c('em', [_vm._v("No pending or open requests")])])
+  }, [_c('em', [_vm._v("Ei odottavia tai avoimia palautteita")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -88636,7 +88636,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "role": "alert"
     }
-  }, [_c('strong', [_vm._v("Success!")]), _vm._v(" " + _vm._s(_vm.body) + "\n")])
+  }, [_vm._v("\n    " + _vm._s(_vm.body) + "\n")])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -88661,7 +88661,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "list-group-item-heading"
     }, [_vm._v("\n            " + _vm._s(update.user.name) + "\n            "), _c('small', [_vm._v("on " + _vm._s(_vm._f("formatTimestamp")(update.updated_at, 'DD.MM.YYYY HH:mm')))])]), _vm._v(" "), _c('p', {
       staticClass: "list-group-item-text"
-    }, [_c('strong', [_vm._v("Value was:")]), _vm._v(_vm._s(update.old_value)), _c('br'), _vm._v(" "), _c('strong', [_vm._v("Value is:")]), _vm._v(_vm._s(update.new_value) + "\n        ")])])
+    }, [_c('strong', [_vm._v("Arvo oli:")]), _vm._v(_vm._s(update.old_value)), _c('br'), _vm._v(" "), _c('strong', [_vm._v("Arvo on:")]), _vm._v(_vm._s(update.new_value) + "\n        ")])])
   })) : _vm._e()
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -88717,8 +88717,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "tooltip",
       rawName: "v-tooltip",
-      value: ('Requests in pending state are not shown on API'),
-      expression: "'Requests in pending state are not shown on API'"
+      value: ('Odottavat palautteet eivät näy rajapinnassa.'),
+      expression: "'Odottavat palautteet eivät näy rajapinnassa.'"
     }],
     staticClass: "label",
     class: _vm.data.status === 'pending' ? 'label-info' : 'label-primary'
@@ -88727,7 +88727,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.destroy
     }
-  }, [_vm._v("Delete request")])])])
+  }, [_vm._v("Poista palaute")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -88761,7 +88761,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.editing = false
       }
     }
-  }, [_vm._v("\n                        Add a new service\n                        "), _c('i', {
+  }, [_vm._v("\n                        Lisää uusi palvelu\n                        "), _c('i', {
     staticClass: "glyphicon glyphicon-plus-sign"
   })])]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
@@ -88822,7 +88822,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "service_name"
     }
-  }, [_vm._v("Name")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Nimi")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-10"
   }, [_c('input', {
     directives: [{
@@ -88860,7 +88860,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "description"
     }
-  }, [_vm._v("Description")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Kuvaus")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-10"
   }, [_c('textarea', {
     directives: [{
@@ -88897,7 +88897,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "group"
     }
-  }, [_vm._v("Group")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Ryhmä")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-10"
   }, [_c('input', {
     directives: [{
@@ -88970,7 +88970,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.resetAndClose($event)
       }
     }
-  }, [_vm._v("Reset & close\n                                    ")]), _vm._v(" "), (!_vm.editing) ? _c('button', {
+  }, [_vm._v("Palauta ja sulje\n                                    ")]), _vm._v(" "), (!_vm.editing) ? _c('button', {
     staticClass: "btn btn-primary",
     on: {
       "click": function($event) {
@@ -88978,7 +88978,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.submitForm($event)
       }
     }
-  }, [_vm._v("\n                                        Save new service\n                                    ")]) : _vm._e(), _vm._v(" "), (_vm.editing) ? _c('button', {
+  }, [_vm._v("\n                                        Lisää uusi palvelu\n                                    ")]) : _vm._e(), _vm._v(" "), (_vm.editing) ? _c('button', {
     staticClass: "btn btn-primary",
     on: {
       "click": function($event) {
@@ -88986,7 +88986,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.submitEditForm($event)
       }
     }
-  }, [_vm._v("\n                                        Save changes to service\n                                    ")]) : _vm._e()])])])]), _vm._v(" "), _c('table', {
+  }, [_vm._v("\n                                        Tallenna muutokset\n                                    ")]) : _vm._e()])])])]), _vm._v(" "), _c('table', {
     staticClass: "table table-striped"
   }, [_vm._m(1), _vm._v(" "), _c('tbody', _vm._l((_vm.items), function(service, index) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(service.service_code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(service.service_name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(service.description))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(service.group))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("json_to_list")(service.keywords)))]), _vm._v(" "), _c('td', [_c('div', {
@@ -89022,13 +89022,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "keywords"
     }
-  }, [_vm._v("Keywords "), _c('small', [_vm._v("comma separated")])])
+  }, [_vm._v("Avainsanat "), _c('small', [_vm._v("erota pilkulla")])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', {
     attrs: {
       "nowrap": "nowrap"
     }
-  }, [_vm._v("Service code")]), _vm._v(" "), _c('th', [_vm._v("Name")]), _vm._v(" "), _c('th', [_vm._v("Description")]), _vm._v(" "), _c('th', [_vm._v("Group")]), _vm._v(" "), _c('th', [_vm._v("Keywords")]), _vm._v(" "), _c('th', {
+  }, [_vm._v("Service code")]), _vm._v(" "), _c('th', [_vm._v("Nimi")]), _vm._v(" "), _c('th', [_vm._v("Kuvaus")]), _vm._v(" "), _c('th', [_vm._v("Ryhmä")]), _vm._v(" "), _c('th', [_vm._v("Avainsanat")]), _vm._v(" "), _c('th', {
     attrs: {
       "width": "80px;"
     }

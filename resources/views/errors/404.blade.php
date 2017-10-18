@@ -5,9 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Resource not found</title>
+    <title>Pyytämääsi resurssia ei löydy</title>
 </head>
 <body>
-    <h1>You have requested a resource which has been removed.</h1>
+    <h1>Pyysit resurssia joka on ilmeisesti poistettu.</h1>
 </body>
 </html>

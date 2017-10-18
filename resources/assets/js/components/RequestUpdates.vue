@@ -10,8 +10,8 @@
                 <small>on {{update.updated_at | formatTimestamp('DD.MM.YYYY HH:mm')}}</small>
             </h4>
             <p class="list-group-item-text">
-                <strong>Value was:</strong>{{update.old_value}}<br>
-                <strong>Value is:</strong>{{update.new_value}}
+                <strong>Arvo oli:</strong>{{update.old_value}}<br>
+                <strong>Arvo on:</strong>{{update.new_value}}
             </p>
         </li>
     </ul>
