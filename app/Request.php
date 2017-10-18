@@ -15,8 +15,6 @@ class Request extends Model
 
     public $primaryKey = 'service_request_id';
 
-    protected $hidden = ['first_name', 'last_name', 'email'];
-
     protected $guarded = [];
 
     public function scopeFilter(Builder $query, RequestFilters $filters)
