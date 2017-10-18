@@ -114,7 +114,7 @@
                                 <img
                                     v-for="photo in data.photos"
                                     :key="photo.id"
-                                    :src="photo.src"
+                                    :src="photo.filename"
                                     :alt="photo.filename"
                                     width="150">
                             </div>
