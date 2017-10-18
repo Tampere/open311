@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\RequestStatusUpdated;
 use App\Http\Controllers\Controller;
 use App\Request as ServiceRequest;
 use App\RequestUpdate;
@@ -80,6 +81,12 @@ class RequestsController extends Controller
         ]);
 
         $request->update(request()->all());
+
+        if($field == 'status') {
+            if(request()->get($field) != 'pending') {
+                event(new RequestStatusUpdated($request));
+            }
+        }
 
         return response('Request updated', 200);
     }
