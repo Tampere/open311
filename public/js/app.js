@@ -35955,7 +35955,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35968,6 +35967,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             data: this.request,
+            original_description: this.request.description,
             editTitle: false,
             editDescription: false,
             editStatusNotes: false
@@ -35996,6 +35996,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.editTitle = false;
         },
         updateDescription: function updateDescription() {
+            if (this.data.description.length === 0) {
+                alert('Palautteen kuvaus ei voi olla tyhjä.');
+                this.data.description = this.original_description;
+                return;
+            }
             this.update({ description: this.data.description });
             this.editDescription = false;
         },
@@ -88295,10 +88300,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.data.description)
     },
     on: {
-      "keyup": function($event) {
-        if (!('button' in $event) && _vm._k($event.keyCode, "enter", 13, $event.key)) { return null; }
-        _vm.updateDescription($event)
-      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.$set(_vm.data, "description", $event.target.value)

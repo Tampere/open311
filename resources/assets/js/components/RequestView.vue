@@ -68,8 +68,7 @@
                                 cols="90"
                                 rows="5"
                                 v-model="data.description"
-                                v-show="editDescription"
-                                v-on:keyup.enter="updateDescription">
+                                v-show="editDescription">
                             </textarea>
                             <div class="btn-group" role="group" style="float: right">
                                 <button
@@ -243,6 +242,7 @@ export default {
     data() {
         return {
             data: this.request,
+            original_description: this.request.description,
             editTitle: false,
             editDescription: false,
             editStatusNotes: false,
@@ -275,6 +275,11 @@ export default {
         },
 
         updateDescription() {
+            if(this.data.description.length === 0) {
+                alert('Palautteen kuvaus ei voi olla tyhjä.');
+                this.data.description = this.original_description;
+                return;
+            }
             this.update({description: this.data.description});
             this.editDescription = false;
         },
