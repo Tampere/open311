@@ -73,10 +73,9 @@ class RequestsController extends Controller
         $payload = request()->all();
         $field = array_keys($payload)[0];
 
-        if($field == 'status') {
-            if(request()->get($field) != 'pending') {
+        if(($field == 'status' && request()->get($field) != 'pending')
+            || ($field == 'status_notes' && $request->status != 'pending')) {
                 event(new RequestStatusUpdated($request));
-            }
         }
 
         RequestUpdate::create([
