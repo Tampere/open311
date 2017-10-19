@@ -5,13 +5,13 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Key</th>
-                <th>Value</th>
+                <th>Avain</th>
+                <th>Arvo</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <th>Name:</th>
+                <th>Nimi:</th>
                 <td>{{$user->name}}</td>
             </tr>
             <tr>
@@ -25,7 +25,7 @@
             <form action="{{url('users/'.$user->id)}}" method="POST" class="form">
                 {{csrf_field()}}
                 {{method_field('DELETE')}}
-                <button type="submit" class="btn btn-danger">Delete user</button>
+                <button type="submit" class="btn btn-danger">Poista käyttäjä</button>
             </form>
         @endunless
     </div>

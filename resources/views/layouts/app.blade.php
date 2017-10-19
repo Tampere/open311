@@ -28,8 +28,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        {{ config('app.name', 'Open311') }}
                     </a>
                 </div>
 
@@ -37,16 +37,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;@if(Auth::check())
-                              <li><a href="{{route('services.index')}}">Services</a></li>
+                              <li><a href="{{route('services.index')}}">Palvelut</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Requests
+                                        Palautteet
                                         <span class="caret"></span>
                                     </a>
 
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{route('requests.index')}}">Pending requests</a></li>
-                                        <li><a href="{{route('requests.archived')}}">Archived requests</a></li>
+                                        <li><a href="{{route('requests.index')}}">Avoimet</a></li>
+                                        <li><a href="{{route('requests.archived')}}">Suljetut</a></li>
                                     </ul>
                                 </li>
                           @endif
@@ -56,42 +56,23 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('login') }}">Kirjaudu sisään</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <span class="label label-danger label-as-badge">
-                                        {{Auth::user()->unreadNotifications->count() > 0 ?
-                                            Auth::user()->unreadNotifications->count() : ''}}
-                                    </span>
-                                    <i class="glyphicon glyphicon-bell"></i> <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    @forelse(Auth::user()->unreadNotifications as $notification)
-                                        @include('notifications.' . snake_case(class_basename($notification->type)))
-                                        <li role="separator" class="divider"></li>
-                                    @empty
-                                        <li><a href="#">No notifications</a></li>
-                                    @endforelse
-                                </ul>
-                            </li>
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{route('profile')}}">Edit profile</a></li>
+                                    <li><a href="{{route('profile')}}">Muokkaa tietojasi</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="{{route('users')}}">Manage users</a></li>
+                                    <li><a href="{{route('users')}}">Hallitse käyttäjiä</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Kirjaudu ulos
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Request as ServiceRequest;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $pending = ServiceRequest::where('status', 'pending')->get();
+        $open = ServiceRequest::where('status', 'open')->get();
+        $closed = ServiceRequest::where('status', 'closed')->get();
+
+        $data = [
+            'pending' => $pending->count(),
+            'open' => $open->count(),
+            'closed' => $closed->count()
+        ];
+
+        $notifications = auth()->user()->unreadNotifications()->get();
+        $notifications->markAsRead();
+
+        return view('home')
+            ->with('pending', $pending)
+            ->with('open', $open)
+            ->with('closed', $closed)
+            ->with('data', $data)
+            ->with('notifications', $notifications);
     }
 
     public function profile()

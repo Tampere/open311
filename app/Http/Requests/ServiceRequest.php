@@ -37,7 +37,7 @@ class ServiceRequest extends FormRequest
             'first_name' => 'max:255',
             'last_name' => 'max:255',
             'phone' => 'max:255',
-            'media_url' => 'max:255',
+            'media_url' => 'max:255'
         ];
 
         $photos = count($this->input('media'));
@@ -62,6 +62,7 @@ class ServiceRequest extends FormRequest
             'last_name' => $this->last_name ?: null,
             'phone' => $this->phone ?: null,
             'media_url' => $this->media_url ?: null,
+            'status' => 'pending'
         ]);
 
         if($this->media && count($this->media) > 0) {

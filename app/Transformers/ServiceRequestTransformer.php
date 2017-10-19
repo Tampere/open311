@@ -28,18 +28,17 @@ class ServiceRequestTransformer extends TransformerAbstract
             'zip_code' => $request->zip_code,
             'lat' => $request->getLat(),
             'long' => $request->getLong(),
-            'email' => $request->email,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'phone' => $request->phone,
             'media_url' => $request->media_url,
             'requested_datetime' => $request->created_at->toW3cString(),
             'updated_datetime' => $request->updated_at->toW3cString(),
         ];
 
         if(count($request->photos) > 0) {
+
             $transforms['extended_attributes'] = [
-                'media_urls' => $request->photos->pluck('filename'),
+                'media_urls' => $request->photos->pluck('filename')->map(function($element) {
+                    return asset('/storage/' . $element);
+                })
             ];
         }
 

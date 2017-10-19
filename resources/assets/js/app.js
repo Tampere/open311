@@ -9,11 +9,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import Tooltip from 'vue-directive-tooltip';
+import 'vue-directive-tooltip/css/index.css';
+Vue.use(Tooltip);
 
 window.events = new Vue();
 
@@ -21,8 +19,24 @@ window.flash = function(message) {
     window.events.$emit('flash', message);
 };
 
+window.moment = require('moment');
+moment.locale('fi');
+
+Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('Flash', require('./components/Flash.vue'));
 Vue.component('Services', require('./components/Services.vue'));
+Vue.component('Requests', require('./components/Requests.vue'));
+Vue.component('RequestView', require('./components/RequestView.vue'));
+Vue.component('ChartRenderer', require('./components/ChartRenderer.vue'));
+
+Vue.filter('formatTimestamp', function(value, format) {
+    if (!value) return '';
+    return window.moment(value).format(format);
+});
+
+Vue.filter('truncate', function(value, limit) {
+    return value.substring(0, limit) + '...';
+});
 
 const app = new Vue({
     el: '#app'

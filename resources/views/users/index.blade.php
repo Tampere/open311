@@ -13,7 +13,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <a href="/register" class="btn btn-primary">Add a new user</a>
+                        <a href="/register" class="btn btn-primary">Lisää uusi käyttäjä</a>
                     </div>
                 </div>
 

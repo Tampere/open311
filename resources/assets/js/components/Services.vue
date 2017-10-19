@@ -7,7 +7,7 @@
                         Services
                         <button @click.prevent="showForm = !showForm; editing = false"
                             class="btn btn-link pull-right">
-                            Add a new service
+                            Lisää uusi palvelu
                             <i class="glyphicon glyphicon-plus-sign"></i>
                         </button>
                     </div>
@@ -33,7 +33,7 @@
                                 </div>
 
                                 <div class="form-group" :class="{'has-error' : errors.service_name}">
-                                    <label for="service_name" class="col-sm-2 control-label">Name</label>
+                                    <label for="service_name" class="col-sm-2 control-label">Nimi</label>
                                     <div class="col-sm-10">
                                         <input
                                             type="text"
@@ -49,7 +49,7 @@
                                 </div>
 
                                 <div class="form-group" :class="{'has-error' : errors.description}">
-                                    <label for="description" class="col-sm-2 control-label">Description</label>
+                                    <label for="description" class="col-sm-2 control-label">Kuvaus</label>
                                     <div class="col-sm-10">
                                         <textarea
                                             class="form-control"
@@ -64,7 +64,7 @@
                                 </div>
 
                                 <div class="form-group" :class="{'has-error' : errors.group}">
-                                    <label for="group" class="col-sm-2 control-label">Group</label>
+                                    <label for="group" class="col-sm-2 control-label">Ryhmä</label>
                                     <div class="col-sm-10">
                                         <input
                                             type="text"
@@ -80,7 +80,7 @@
                                 </div>
 
                                 <div class="form-group" :class="{'has-error' : errors.keywords}">
-                                    <label for="keywords" class="col-sm-2 control-label">Keywords <small>comma separated</small></label>
+                                    <label for="keywords" class="col-sm-2 control-label">Avainsanat <small>erota pilkulla</small></label>
                                     <div class="col-sm-10">
                                         <input
                                             type="text"
@@ -99,21 +99,21 @@
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button
                                             @click.prevent="resetAndClose"
-                                            class="btn btn-default">Reset & close
+                                            class="btn btn-default">Palauta ja sulje
                                         </button>
                                         <button
                                             v-if="!editing"
                                             @click.prevent="submitForm"
                                             class="btn btn-primary"
                                         >
-                                            Save new service
+                                            Lisää uusi palvelu
                                         </button>
                                         <button
                                             v-if="editing"
                                             @click.prevent="submitEditForm"
                                             class="btn btn-primary"
                                         >
-                                            Save changes to service
+                                            Tallenna muutokset
                                         </button>
                                     </div>
                                 </div>
@@ -124,10 +124,10 @@
                             <thead>
                             <tr>
                                 <th nowrap="nowrap">Service code</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Group</th>
-                                <th>Keywords</th>
+                                <th>Nimi</th>
+                                <th>Kuvaus</th>
+                                <th>Ryhmä</th>
+                                <th>Avainsanat</th>
                                 <th width="80px;">&nbsp;</th>
                             </tr>
                             </thead>

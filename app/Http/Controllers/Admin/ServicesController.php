@@ -125,6 +125,6 @@ class ServicesController extends Controller
     {
         Service::destroy($id);
 
-        return response()->json(['message' => 'Service removed'], 200);
+        return response()->json(['message' => 'Palvelu poistettu'], 200);
     }
 }
