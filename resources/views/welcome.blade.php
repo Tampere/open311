@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Open311 issue handler interface</div>
+                    <div class="panel-heading">Tampere Open311</div>
 
                     <div class="panel-body">
-                        <p>Please <a href="/login">log in</a> to use issue handler</p>
+                        <p>Ole hyvä ja <a href="/login">kirjaudu sisään</a> jatkaaksesi palvelun käyttöä.</p>
                     </div>
                 </div>
             </div>
