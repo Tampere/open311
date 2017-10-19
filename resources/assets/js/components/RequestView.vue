@@ -105,6 +105,13 @@
                             >
                                 {{data.media_url}}
                             </span>
+                            <div class="btn-group" role="group" style="float: right">
+                                <button
+                                        class="btn btn-xs btn-danger"
+                                        @click="clearMediaUrl">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -280,6 +287,11 @@ export default {
         clearStatusNotes() {
             this.update({status_notes: ''});
             this.data.status_notes = '';
+        },
+
+        clearMediaUrl() {
+            this.update({media_url: ''});
+            this.data.media_url = '';
         },
 
         clearTitle() {
