@@ -4,8 +4,10 @@ namespace App\Listeners;
 
 use App\Events\RequestStatusUpdated;
 use App\Mail\RequestStatusChangedNotification;
+use App\Mail\RequestStatusChangeNotification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class NotifyRequestSender
@@ -31,6 +33,6 @@ class NotifyRequestSender
         if(is_null($event->request->email)) return;
 
         Mail::to($event->request->email)
-            ->send(new RequestStatusChangedNotification($event->request));
+            ->send(new RequestStatusChangeNotification($event->request));
     }
 }

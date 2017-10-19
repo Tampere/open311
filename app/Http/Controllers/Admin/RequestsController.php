@@ -73,6 +73,12 @@ class RequestsController extends Controller
         $payload = request()->all();
         $field = array_keys($payload)[0];
 
+        if($field == 'status') {
+            if(request()->get($field) != 'pending') {
+                event(new RequestStatusUpdated($request));
+            }
+        }
+
         RequestUpdate::create([
             'service_request_id' => $request->service_request_id,
             'old_value' => json_encode([$field => $request->$field]),
@@ -81,12 +87,6 @@ class RequestsController extends Controller
         ]);
 
         $request->update(request()->all());
-
-        if($field == 'status') {
-            if(request()->get($field) != 'pending') {
-                event(new RequestStatusUpdated($request));
-            }
-        }
 
         return response('Palaute päivitetty', 200);
     }

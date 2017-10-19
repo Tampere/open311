@@ -285,18 +285,24 @@ export default {
         },
 
         clearStatusNotes() {
-            this.update({status_notes: ''});
-            this.data.status_notes = '';
+            if(confirm('Haluatko varmasti poistaa palautteen status -tiedon?')) {
+                this.update({status_notes: ''});
+                this.data.status_notes = '';
+            }
         },
 
         clearMediaUrl() {
-            this.update({media_url: ''});
-            this.data.media_url = '';
+            if(confirm('Haluatko varmasti poistaa tämän kentän palautteesta?')) {
+                this.update({media_url: ''});
+                this.data.media_url = '';
+            }
         },
 
         clearTitle() {
-            this.update({title: ''});
-            this.data.title = '';
+            if(confirm('Haluatko varmasti poistaa tämän kentän palautteesta?')) {
+                this.update({title: ''});
+                this.data.title = '';
+            }
         },
 
         deleteImage(photo) {

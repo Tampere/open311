@@ -63,7 +63,7 @@ class HomeController extends Controller
         ]);
 
         return redirect('users')
-            ->with('status', 'User updated.');
+            ->with('status', 'Käyttäjän tiedot päivitettiin.');
     }
 
     public function destroy(User $user)
@@ -71,6 +71,6 @@ class HomeController extends Controller
         $user->delete();
 
         return redirect('users')
-            ->with('status', 'User deleted.');
+            ->with('status', 'Käyttäjä poistettiin.');
     }
 }

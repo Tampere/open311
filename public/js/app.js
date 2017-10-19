@@ -35949,6 +35949,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -35997,12 +36004,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.editStatusNotes = false;
         },
         clearStatusNotes: function clearStatusNotes() {
-            this.update({ status_notes: '' });
-            this.data.status_notes = '';
+            if (confirm('Haluatko varmasti poistaa palautteen status -tiedon?')) {
+                this.update({ status_notes: '' });
+                this.data.status_notes = '';
+            }
+        },
+        clearMediaUrl: function clearMediaUrl() {
+            if (confirm('Haluatko varmasti poistaa tämän kentän palautteesta?')) {
+                this.update({ media_url: '' });
+                this.data.media_url = '';
+            }
         },
         clearTitle: function clearTitle() {
-            this.update({ title: '' });
-            this.data.title = '';
+            if (confirm('Haluatko varmasti poistaa tämän kentän palautteesta?')) {
+                this.update({ title: '' });
+                this.data.title = '';
+            }
         },
         deleteImage: function deleteImage(photo) {
             var _this = this;
@@ -52229,14 +52246,14 @@ exports.push([module.i, ".vue-tooltip{background-color:#000;box-sizing:border-bo
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)();
-exports.push([module.i, "\n.editable[data-v-1a782933] {\r\n    color: #2a88bd;\r\n    border-bottom: 1px dotted #2a88bd;\n}\n.segment[data-v-1a782933] {\r\n        background-color: #98cbe8;\n}\r\n", ""]);
+exports.push([module.i, "\n.editable[data-v-1a782933] {\n    color: #2a88bd;\n    border-bottom: 1px dotted #2a88bd;\n}\n.segment[data-v-1a782933] {\n        background-color: #98cbe8;\n}\n", ""]);
 
 /***/ }),
 /* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)();
-exports.push([module.i, "\n.table[data-v-21cac216] {\r\n    background: #fff;\n}\r\n", ""]);
+exports.push([module.i, "\n.table[data-v-21cac216] {\n    background: #fff;\n}\n", ""]);
 
 /***/ }),
 /* 376 */
@@ -83818,7 +83835,7 @@ module.exports = {
 /* 401 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[[{"raw":"vue-chartjs","scope":null,"escapedName":"vue-chartjs","name":"vue-chartjs","rawSpec":"","spec":"latest","type":"tag"},"C:\\Users\\as77893\\Desktop\\code\\open311"]],"_from":"vue-chartjs@latest","_id":"vue-chartjs@3.0.0","_inCache":true,"_location":"/vue-chartjs","_nodeVersion":"8.6.0","_npmOperationalInternal":{"host":"s3://npm-registry-packages","tmp":"tmp/vue-chartjs-3.0.0.tgz_1507991901424_0.9964708155021071"},"_npmUser":{"name":"apertureless","email":"juszczak.j@googlemail.com"},"_npmVersion":"5.4.2","_phantomChildren":{},"_requested":{"raw":"vue-chartjs","scope":null,"escapedName":"vue-chartjs","name":"vue-chartjs","rawSpec":"","spec":"latest","type":"tag"},"_requiredBy":["#USER","/"],"_resolved":"https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-3.0.0.tgz","_shasum":"a94f79072ed9a6d51b62c23269d874af0bc48718","_shrinkwrap":null,"_spec":"vue-chartjs","_where":"C:\\Users\\as77893\\Desktop\\code\\open311","author":{"name":"Jakub Juszczak","email":"jakub@posteo.de"},"babel":{"presets":["es2015"]},"browserify":{"transform":["babelify"]},"bugs":{"url":"https://github.com/apertureless/vue-chartjs/issues"},"contributors":[{"name":"Thorsten Lünborg","url":"https://github.com/LinusBorg"},{"name":"Juan Carlos Alonso","url":"https://github.com/jcalonso"}],"dependencies":{"lodash.merge":"^4.6.0"},"description":"Vue.js wrapper for chart.js for creating beautiful charts.","devDependencies":{"babel-cli":"^6.24.1","babel-core":"^6.25.0","babel-loader":"6.4.1","babel-plugin-transform-object-assign":"^6.22.0","babel-plugin-transform-runtime":"^6.23.0","babel-preset-es2015":"^6.24.1","babel-preset-stage-2":"^6.24.1","babel-runtime":"^6.23.0","chai":"^3.5.0","chart.js":"2.7.0","chromedriver":"^2.28.0","connect-history-api-fallback":"^1.1.0","cross-env":"^3.2.4","cross-spawn":"^5.1.0","css-loader":"^0.28.0","eslint":"^3.19.0","eslint-config-standard":"^10.2.1","eslint-friendly-formatter":"^2.0.7","eslint-loader":"^1.7.1","eslint-plugin-html":"^2.0.1","eslint-plugin-import":"^2.2.0","eslint-plugin-node":"^4.2.2","eslint-plugin-promise":"^3.5.0","eslint-plugin-standard":"^3.0.1","eventsource-polyfill":"^0.9.6","express":"^4.15.2","extract-text-webpack-plugin":"^1.0.1","file-loader":"^0.10.1","function-bind":"^1.0.2","html-webpack-plugin":"^2.28.0","http-proxy-middleware":"^0.17.4","inject-loader":"^3.0.0","isparta-loader":"^2.0.0","jasmine-core":"^2.5.2","json-loader":"^0.5.4","karma":"^1.5.0","karma-coverage":"^1.1.1","karma-jasmine":"^1.0.2","karma-mocha":"^1.2.0","karma-phantomjs-launcher":"^1.0.4","karma-sinon-chai":"^1.2.0","karma-sourcemap-loader":"^0.3.7","karma-spec-reporter":"0.0.30","karma-webpack":"1.8.1","lolex":"^1.6.0","mocha":"^3.1.0","nightwatch":"^0.9.14","ora":"^1.2.0","phantomjs-prebuilt":"^2.1.13","selenium-server":"^3.3.1","shelljs":"^0.7.7","sinon":"^2.1.0","sinon-chai":"^2.9.0","url-loader":"^0.5.8","vue":"2.5.2","vue-hot-reload-api":"2.1.0","vue-html-loader":"^1.2.4","vue-loader":"12.2.2","vue-style-loader":"3.0.1","vue-template-compiler":"2.5.2","webpack":"^1.13.2","webpack-dev-middleware":"^1.10.1","webpack-hot-middleware":"^2.17.1","webpack-merge":"1.1.1"},"directories":{},"dist":{"integrity":"sha512-XDe1iIYhQdr0L3MvxdWrqhsq/pyB4I1/e8QZ8OfYCmpoOhelauWgjeT9HzK7oLqou5n8khEcAaa4WEUceqK8rA==","shasum":"a94f79072ed9a6d51b62c23269d874af0bc48718","tarball":"https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-3.0.0.tgz"},"engines":{"node":">=6.9.0"},"files":["src","dist","es"],"gitHead":"b465070a7a9e8e50c7bc69a292898a57ed00d0ee","greenkeeper":{"ignore":["extract-text-webpack-plugin","karma-webpack","webpack","webpack-merge"]},"homepage":"http://vue-chartjs.org","jsnext:main":"es/index.js","keywords":["ChartJs","Vue","Visualisation","Wrapper","Charts"],"license":"MIT","main":"dist/vue-chartjs.js","maintainers":[{"name":"apertureless","email":"juszczak.j@googlemail.com"}],"module":"es/index.js","name":"vue-chartjs","optionalDependencies":{},"peerDependencies":{"chart.js":"2.7.0","vue":"2.5.2"},"readme":"ERROR: No README data found!","repository":{"type":"git","url":"git+ssh://git@github.com/apertureless/vue-chartjs.git"},"scripts":{"build":"yarn run release && yarn run build:es","build:es":"cross-env BABEL_ENV=es babel src --out-dir es","dev":"node build/dev-server.js","e2e":"node test/e2e/runner.js","lint":"eslint --ext .js,.vue src test/unit/specs test/e2e/specs","prepublish":"yarn run lint && yarn run test && yarn run build","release":"webpack --progress --hide-modules --config  ./build/webpack.release.js && NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.release.min.js && webpack --progress --hide-modules --config  ./build/webpack.release.full.js && NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.release.full.min.js","test":"npm run unit","unit":"karma start test/unit/karma.conf.js --single-run"},"unpkg":"dist/vue-chartjs.full.min.js","version":"3.0.0"}
+module.exports = {"_args":[[{"raw":"vue-chartjs@^3.0.0","scope":null,"escapedName":"vue-chartjs","name":"vue-chartjs","rawSpec":"^3.0.0","spec":">=3.0.0 <4.0.0","type":"range"},"/Users/antti/Desktop/homestead/projects/open311"]],"_from":"vue-chartjs@>=3.0.0 <4.0.0","_id":"vue-chartjs@3.0.0","_inCache":true,"_location":"/vue-chartjs","_nodeVersion":"8.6.0","_npmOperationalInternal":{"host":"s3://npm-registry-packages","tmp":"tmp/vue-chartjs-3.0.0.tgz_1507991901424_0.9964708155021071"},"_npmUser":{"name":"apertureless","email":"juszczak.j@googlemail.com"},"_npmVersion":"5.4.2","_phantomChildren":{},"_requested":{"raw":"vue-chartjs@^3.0.0","scope":null,"escapedName":"vue-chartjs","name":"vue-chartjs","rawSpec":"^3.0.0","spec":">=3.0.0 <4.0.0","type":"range"},"_requiredBy":["/"],"_resolved":"https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-3.0.0.tgz","_shasum":"a94f79072ed9a6d51b62c23269d874af0bc48718","_shrinkwrap":null,"_spec":"vue-chartjs@^3.0.0","_where":"/Users/antti/Desktop/homestead/projects/open311","author":{"name":"Jakub Juszczak","email":"jakub@posteo.de"},"babel":{"presets":["es2015"]},"browserify":{"transform":["babelify"]},"bugs":{"url":"https://github.com/apertureless/vue-chartjs/issues"},"contributors":[{"name":"Thorsten Lünborg","url":"https://github.com/LinusBorg"},{"name":"Juan Carlos Alonso","url":"https://github.com/jcalonso"}],"dependencies":{"lodash.merge":"^4.6.0"},"description":"Vue.js wrapper for chart.js for creating beautiful charts.","devDependencies":{"babel-cli":"^6.24.1","babel-core":"^6.25.0","babel-loader":"6.4.1","babel-plugin-transform-object-assign":"^6.22.0","babel-plugin-transform-runtime":"^6.23.0","babel-preset-es2015":"^6.24.1","babel-preset-stage-2":"^6.24.1","babel-runtime":"^6.23.0","chai":"^3.5.0","chart.js":"2.7.0","chromedriver":"^2.28.0","connect-history-api-fallback":"^1.1.0","cross-env":"^3.2.4","cross-spawn":"^5.1.0","css-loader":"^0.28.0","eslint":"^3.19.0","eslint-config-standard":"^10.2.1","eslint-friendly-formatter":"^2.0.7","eslint-loader":"^1.7.1","eslint-plugin-html":"^2.0.1","eslint-plugin-import":"^2.2.0","eslint-plugin-node":"^4.2.2","eslint-plugin-promise":"^3.5.0","eslint-plugin-standard":"^3.0.1","eventsource-polyfill":"^0.9.6","express":"^4.15.2","extract-text-webpack-plugin":"^1.0.1","file-loader":"^0.10.1","function-bind":"^1.0.2","html-webpack-plugin":"^2.28.0","http-proxy-middleware":"^0.17.4","inject-loader":"^3.0.0","isparta-loader":"^2.0.0","jasmine-core":"^2.5.2","json-loader":"^0.5.4","karma":"^1.5.0","karma-coverage":"^1.1.1","karma-jasmine":"^1.0.2","karma-mocha":"^1.2.0","karma-phantomjs-launcher":"^1.0.4","karma-sinon-chai":"^1.2.0","karma-sourcemap-loader":"^0.3.7","karma-spec-reporter":"0.0.30","karma-webpack":"1.8.1","lolex":"^1.6.0","mocha":"^3.1.0","nightwatch":"^0.9.14","ora":"^1.2.0","phantomjs-prebuilt":"^2.1.13","selenium-server":"^3.3.1","shelljs":"^0.7.7","sinon":"^2.1.0","sinon-chai":"^2.9.0","url-loader":"^0.5.8","vue":"2.5.2","vue-hot-reload-api":"2.1.0","vue-html-loader":"^1.2.4","vue-loader":"12.2.2","vue-style-loader":"3.0.1","vue-template-compiler":"2.5.2","webpack":"^1.13.2","webpack-dev-middleware":"^1.10.1","webpack-hot-middleware":"^2.17.1","webpack-merge":"1.1.1"},"directories":{},"dist":{"integrity":"sha512-XDe1iIYhQdr0L3MvxdWrqhsq/pyB4I1/e8QZ8OfYCmpoOhelauWgjeT9HzK7oLqou5n8khEcAaa4WEUceqK8rA==","shasum":"a94f79072ed9a6d51b62c23269d874af0bc48718","tarball":"https://registry.npmjs.org/vue-chartjs/-/vue-chartjs-3.0.0.tgz"},"engines":{"node":">=6.9.0"},"files":["src","dist","es"],"gitHead":"b465070a7a9e8e50c7bc69a292898a57ed00d0ee","greenkeeper":{"ignore":["extract-text-webpack-plugin","karma-webpack","webpack","webpack-merge"]},"homepage":"http://vue-chartjs.org","jsnext:main":"es/index.js","keywords":["ChartJs","Vue","Visualisation","Wrapper","Charts"],"license":"MIT","main":"dist/vue-chartjs.js","maintainers":[{"name":"apertureless","email":"juszczak.j@googlemail.com"}],"module":"es/index.js","name":"vue-chartjs","optionalDependencies":{},"peerDependencies":{"chart.js":"2.7.0","vue":"2.5.2"},"readme":"ERROR: No README data found!","repository":{"type":"git","url":"git+ssh://git@github.com/apertureless/vue-chartjs.git"},"scripts":{"build":"yarn run release && yarn run build:es","build:es":"cross-env BABEL_ENV=es babel src --out-dir es","dev":"node build/dev-server.js","e2e":"node test/e2e/runner.js","lint":"eslint --ext .js,.vue src test/unit/specs test/e2e/specs","prepublish":"yarn run lint && yarn run test && yarn run build","release":"webpack --progress --hide-modules --config  ./build/webpack.release.js && NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.release.min.js && webpack --progress --hide-modules --config  ./build/webpack.release.full.js && NODE_ENV=production webpack --progress --hide-modules --config  ./build/webpack.release.full.min.js","test":"npm run unit","unit":"karma start test/unit/karma.conf.js --single-run"},"unpkg":"dist/vue-chartjs.full.min.js","version":"3.0.0"}
 
 /***/ }),
 /* 402 */
@@ -87890,7 +87907,7 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\as77893\\Desktop\\code\\open311\\resources\\assets\\js\\components\\ChartRenderer.vue"
+Component.options.__file = "/Users/antti/Desktop/homestead/projects/open311/resources/assets/js/components/ChartRenderer.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ChartRenderer.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -87928,7 +87945,7 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\as77893\\Desktop\\code\\open311\\resources\\assets\\js\\components\\Flash.vue"
+Component.options.__file = "/Users/antti/Desktop/homestead/projects/open311/resources/assets/js/components/Flash.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Flash.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -87966,7 +87983,7 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\as77893\\Desktop\\code\\open311\\resources\\assets\\js\\components\\Request.vue"
+Component.options.__file = "/Users/antti/Desktop/homestead/projects/open311/resources/assets/js/components/Request.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Request.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -88004,7 +88021,7 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\as77893\\Desktop\\code\\open311\\resources\\assets\\js\\components\\RequestUpdates.vue"
+Component.options.__file = "/Users/antti/Desktop/homestead/projects/open311/resources/assets/js/components/RequestUpdates.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] RequestUpdates.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -88042,7 +88059,7 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\as77893\\Desktop\\code\\open311\\resources\\assets\\js\\components\\RequestView.vue"
+Component.options.__file = "/Users/antti/Desktop/homestead/projects/open311/resources/assets/js/components/RequestView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] RequestView.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -88080,7 +88097,7 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\as77893\\Desktop\\code\\open311\\resources\\assets\\js\\components\\Requests.vue"
+Component.options.__file = "/Users/antti/Desktop/homestead/projects/open311/resources/assets/js/components/Requests.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Requests.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -88114,7 +88131,7 @@ var Component = __webpack_require__(9)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\as77893\\Desktop\\code\\open311\\resources\\assets\\js\\components\\Services.vue"
+Component.options.__file = "/Users/antti/Desktop/homestead/projects/open311/resources/assets/js/components/Services.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Services.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -88333,7 +88350,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "{ html: 'tooltipContent' }"
     }],
     staticClass: "editable"
-  }, [_vm._v("\n                            " + _vm._s(_vm.data.media_url) + "\n                        ")]) : _vm._e()])]), _vm._v(" "), _c('tr', [_c('th', {
+  }, [_vm._v("\n                            " + _vm._s(_vm.data.media_url) + "\n                        ")]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "btn-group",
+    staticStyle: {
+      "float": "right"
+    },
+    attrs: {
+      "role": "group"
+    }
+  }, [_c('button', {
+    staticClass: "btn btn-xs btn-danger",
+    on: {
+      "click": _vm.clearMediaUrl
+    }
+  }, [_c('i', {
+    staticClass: "glyphicon glyphicon-trash"
+  })])])])]), _vm._v(" "), _c('tr', [_c('th', {
     attrs: {
       "scope": "row"
     }
@@ -89231,7 +89263,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.5.0
+ * Vue.js v2.5.2
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -89698,6 +89730,92 @@ function parsePath (path) {
 
 /*  */
 
+// can we use __proto__?
+var hasProto = '__proto__' in {};
+
+// Browser environment sniffing
+var inBrowser = typeof window !== 'undefined';
+var UA = inBrowser && window.navigator.userAgent.toLowerCase();
+var isIE = UA && /msie|trident/.test(UA);
+var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
+var isEdge = UA && UA.indexOf('edge/') > 0;
+var isAndroid = UA && UA.indexOf('android') > 0;
+var isIOS = UA && /iphone|ipad|ipod|ios/.test(UA);
+var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
+
+// Firefox has a "watch" function on Object.prototype...
+var nativeWatch = ({}).watch;
+
+var supportsPassive = false;
+if (inBrowser) {
+  try {
+    var opts = {};
+    Object.defineProperty(opts, 'passive', ({
+      get: function get () {
+        /* istanbul ignore next */
+        supportsPassive = true;
+      }
+    })); // https://github.com/facebook/flow/issues/285
+    window.addEventListener('test-passive', null, opts);
+  } catch (e) {}
+}
+
+// this needs to be lazy-evaled because vue may be required before
+// vue-server-renderer can set VUE_ENV
+var _isServer;
+var isServerRendering = function () {
+  if (_isServer === undefined) {
+    /* istanbul ignore if */
+    if (!inBrowser && typeof global !== 'undefined') {
+      // detect presence of vue-server-renderer and avoid
+      // Webpack shimming the process
+      _isServer = global['process'].env.VUE_ENV === 'server';
+    } else {
+      _isServer = false;
+    }
+  }
+  return _isServer
+};
+
+// detect devtools
+var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+/* istanbul ignore next */
+function isNative (Ctor) {
+  return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+}
+
+var hasSymbol =
+  typeof Symbol !== 'undefined' && isNative(Symbol) &&
+  typeof Reflect !== 'undefined' && isNative(Reflect.ownKeys);
+
+var _Set;
+/* istanbul ignore if */ // $flow-disable-line
+if (typeof Set !== 'undefined' && isNative(Set)) {
+  // use native Set when available.
+  _Set = Set;
+} else {
+  // a non-standard Set polyfill that only works with primitive keys.
+  _Set = (function () {
+    function Set () {
+      this.set = Object.create(null);
+    }
+    Set.prototype.has = function has (key) {
+      return this.set[key] === true
+    };
+    Set.prototype.add = function add (key) {
+      this.set[key] = true;
+    };
+    Set.prototype.clear = function clear () {
+      this.set = Object.create(null);
+    };
+
+    return Set;
+  }());
+}
+
+/*  */
+
 var warn = noop;
 var tip = noop;
 var generateComponentTrace = (noop); // work around flow check
@@ -89788,220 +89906,6 @@ if (true) {
       return ("\n\n(found in " + (formatComponentName(vm)) + ")")
     }
   };
-}
-
-/*  */
-
-function handleError (err, vm, info) {
-  if (vm) {
-    var cur = vm;
-    while ((cur = cur.$parent)) {
-      var hooks = cur.$options.errorCaptured;
-      if (hooks) {
-        for (var i = 0; i < hooks.length; i++) {
-          try {
-            var capture = hooks[i].call(cur, err, vm, info) === false;
-            if (capture) { return }
-          } catch (e) {
-            globalHandleError(e, cur, 'errorCaptured hook');
-          }
-        }
-      }
-    }
-  }
-  globalHandleError(err, vm, info);
-}
-
-function globalHandleError (err, vm, info) {
-  if (config.errorHandler) {
-    try {
-      return config.errorHandler.call(null, err, vm, info)
-    } catch (e) {
-      logError(e, null, 'config.errorHandler');
-    }
-  }
-  logError(err, vm, info);
-}
-
-function logError (err, vm, info) {
-  if (true) {
-    warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
-  }
-  /* istanbul ignore else */
-  if (inBrowser && typeof console !== 'undefined') {
-    console.error(err);
-  } else {
-    throw err
-  }
-}
-
-/*  */
-/* globals MessageChannel */
-
-// can we use __proto__?
-var hasProto = '__proto__' in {};
-
-// Browser environment sniffing
-var inBrowser = typeof window !== 'undefined';
-var UA = inBrowser && window.navigator.userAgent.toLowerCase();
-var isIE = UA && /msie|trident/.test(UA);
-var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
-var isEdge = UA && UA.indexOf('edge/') > 0;
-var isAndroid = UA && UA.indexOf('android') > 0;
-var isIOS = UA && /iphone|ipad|ipod|ios/.test(UA);
-var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
-
-// Firefox has a "watch" function on Object.prototype...
-var nativeWatch = ({}).watch;
-
-var supportsPassive = false;
-if (inBrowser) {
-  try {
-    var opts = {};
-    Object.defineProperty(opts, 'passive', ({
-      get: function get () {
-        /* istanbul ignore next */
-        supportsPassive = true;
-      }
-    })); // https://github.com/facebook/flow/issues/285
-    window.addEventListener('test-passive', null, opts);
-  } catch (e) {}
-}
-
-// this needs to be lazy-evaled because vue may be required before
-// vue-server-renderer can set VUE_ENV
-var _isServer;
-var isServerRendering = function () {
-  if (_isServer === undefined) {
-    /* istanbul ignore if */
-    if (!inBrowser && typeof global !== 'undefined') {
-      // detect presence of vue-server-renderer and avoid
-      // Webpack shimming the process
-      _isServer = global['process'].env.VUE_ENV === 'server';
-    } else {
-      _isServer = false;
-    }
-  }
-  return _isServer
-};
-
-// detect devtools
-var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
-
-/* istanbul ignore next */
-function isNative (Ctor) {
-  return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
-}
-
-var hasSymbol =
-  typeof Symbol !== 'undefined' && isNative(Symbol) &&
-  typeof Reflect !== 'undefined' && isNative(Reflect.ownKeys);
-
-/**
- * Defer a task to execute it asynchronously.
- */
-var nextTick = (function () {
-  var callbacks = [];
-  var pending = false;
-  var timerFunc;
-
-  function nextTickHandler () {
-    pending = false;
-    var copies = callbacks.slice(0);
-    callbacks.length = 0;
-    for (var i = 0; i < copies.length; i++) {
-      copies[i]();
-    }
-  }
-
-  // An asynchronous deferring mechanism.
-  // In pre 2.4, we used to use microtasks (Promise/MutationObserver)
-  // but microtasks actually has too high a priority and fires in between
-  // supposedly sequential events (e.g. #4521, #6690) or even between
-  // bubbling of the same event (#6566). Technically setImmediate should be
-  // the ideal choice, but it's not available everywhere; and the only polyfill
-  // that consistently queues the callback after all DOM events triggered in the
-  // same loop is by using MessageChannel.
-  /* istanbul ignore if */
-  if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
-    timerFunc = function () {
-      setImmediate(nextTickHandler);
-    };
-  } else if (typeof MessageChannel !== 'undefined' && (
-    isNative(MessageChannel) ||
-    // PhantomJS
-    MessageChannel.toString() === '[object MessageChannelConstructor]'
-  )) {
-    var channel = new MessageChannel();
-    var port = channel.port2;
-    channel.port1.onmessage = nextTickHandler;
-    timerFunc = function () {
-      port.postMessage(1);
-    };
-  } else
-  /* istanbul ignore next */
-  if (typeof Promise !== 'undefined' && isNative(Promise)) {
-    // use microtask in non-DOM environments, e.g. Weex
-    var p = Promise.resolve();
-    timerFunc = function () {
-      p.then(nextTickHandler);
-    };
-  } else {
-    // fallback to setTimeout
-    timerFunc = function () {
-      setTimeout(nextTickHandler, 0);
-    };
-  }
-
-  return function queueNextTick (cb, ctx) {
-    var _resolve;
-    callbacks.push(function () {
-      if (cb) {
-        try {
-          cb.call(ctx);
-        } catch (e) {
-          handleError(e, ctx, 'nextTick');
-        }
-      } else if (_resolve) {
-        _resolve(ctx);
-      }
-    });
-    if (!pending) {
-      pending = true;
-      timerFunc();
-    }
-    // $flow-disable-line
-    if (!cb && typeof Promise !== 'undefined') {
-      return new Promise(function (resolve, reject) {
-        _resolve = resolve;
-      })
-    }
-  }
-})();
-
-var _Set;
-/* istanbul ignore if */ // $flow-disable-line
-if (typeof Set !== 'undefined' && isNative(Set)) {
-  // use native Set when available.
-  _Set = Set;
-} else {
-  // a non-standard Set polyfill that only works with primitive keys.
-  _Set = (function () {
-    function Set () {
-      this.set = Object.create(null);
-    }
-    Set.prototype.has = function has (key) {
-      return this.set[key] === true
-    };
-    Set.prototype.add = function add (key) {
-      this.set[key] = true;
-    };
-    Set.prototype.clear = function clear () {
-      this.set = Object.create(null);
-    };
-
-    return Set;
-  }());
 }
 
 /*  */
@@ -90698,7 +90602,7 @@ function normalizeProps (options, vm) {
         ? val
         : { type: val };
     }
-  } else if ("development" !== 'production' && props) {
+  } else if (true) {
     warn(
       "Invalid value for option \"props\": expected an Array or an Object, " +
       "but got " + (toRawType(props)) + ".",
@@ -91005,6 +90909,165 @@ function isType (type, fn) {
   }
   /* istanbul ignore next */
   return false
+}
+
+/*  */
+
+function handleError (err, vm, info) {
+  if (vm) {
+    var cur = vm;
+    while ((cur = cur.$parent)) {
+      var hooks = cur.$options.errorCaptured;
+      if (hooks) {
+        for (var i = 0; i < hooks.length; i++) {
+          try {
+            var capture = hooks[i].call(cur, err, vm, info) === false;
+            if (capture) { return }
+          } catch (e) {
+            globalHandleError(e, cur, 'errorCaptured hook');
+          }
+        }
+      }
+    }
+  }
+  globalHandleError(err, vm, info);
+}
+
+function globalHandleError (err, vm, info) {
+  if (config.errorHandler) {
+    try {
+      return config.errorHandler.call(null, err, vm, info)
+    } catch (e) {
+      logError(e, null, 'config.errorHandler');
+    }
+  }
+  logError(err, vm, info);
+}
+
+function logError (err, vm, info) {
+  if (true) {
+    warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
+  }
+  /* istanbul ignore else */
+  if (inBrowser && typeof console !== 'undefined') {
+    console.error(err);
+  } else {
+    throw err
+  }
+}
+
+/*  */
+/* globals MessageChannel */
+
+var callbacks = [];
+var pending = false;
+
+function flushCallbacks () {
+  pending = false;
+  var copies = callbacks.slice(0);
+  callbacks.length = 0;
+  for (var i = 0; i < copies.length; i++) {
+    copies[i]();
+  }
+}
+
+// Here we have async deferring wrappers using both micro and macro tasks.
+// In < 2.4 we used micro tasks everywhere, but there are some scenarios where
+// micro tasks have too high a priority and fires in between supposedly
+// sequential events (e.g. #4521, #6690) or even between bubbling of the same
+// event (#6566). However, using macro tasks everywhere also has subtle problems
+// when state is changed right before repaint (e.g. #6813, out-in transitions).
+// Here we use micro task by default, but expose a way to force macro task when
+// needed (e.g. in event handlers attached by v-on).
+var microTimerFunc;
+var macroTimerFunc;
+var useMacroTask = false;
+
+// Determine (macro) Task defer implementation.
+// Technically setImmediate should be the ideal choice, but it's only available
+// in IE. The only polyfill that consistently queues the callback after all DOM
+// events triggered in the same loop is by using MessageChannel.
+/* istanbul ignore if */
+if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
+  macroTimerFunc = function () {
+    setImmediate(flushCallbacks);
+  };
+} else if (typeof MessageChannel !== 'undefined' && (
+  isNative(MessageChannel) ||
+  // PhantomJS
+  MessageChannel.toString() === '[object MessageChannelConstructor]'
+)) {
+  var channel = new MessageChannel();
+  var port = channel.port2;
+  channel.port1.onmessage = flushCallbacks;
+  macroTimerFunc = function () {
+    port.postMessage(1);
+  };
+} else {
+  /* istanbul ignore next */
+  macroTimerFunc = function () {
+    setTimeout(flushCallbacks, 0);
+  };
+}
+
+// Determine MicroTask defer implementation.
+/* istanbul ignore next, $flow-disable-line */
+if (typeof Promise !== 'undefined' && isNative(Promise)) {
+  var p = Promise.resolve();
+  microTimerFunc = function () {
+    p.then(flushCallbacks);
+    // in problematic UIWebViews, Promise.then doesn't completely break, but
+    // it can get stuck in a weird state where callbacks are pushed into the
+    // microtask queue but the queue isn't being flushed, until the browser
+    // needs to do some other work, e.g. handle a timer. Therefore we can
+    // "force" the microtask queue to be flushed by adding an empty timer.
+    if (isIOS) { setTimeout(noop); }
+  };
+} else {
+  // fallback to macro
+  microTimerFunc = macroTimerFunc;
+}
+
+/**
+ * Wrap a function so that if any code inside triggers state change,
+ * the changes are queued using a Task instead of a MicroTask.
+ */
+function withMacroTask (fn) {
+  return fn._withTask || (fn._withTask = function () {
+    useMacroTask = true;
+    var res = fn.apply(null, arguments);
+    useMacroTask = false;
+    return res
+  })
+}
+
+function nextTick (cb, ctx) {
+  var _resolve;
+  callbacks.push(function () {
+    if (cb) {
+      try {
+        cb.call(ctx);
+      } catch (e) {
+        handleError(e, ctx, 'nextTick');
+      }
+    } else if (_resolve) {
+      _resolve(ctx);
+    }
+  });
+  if (!pending) {
+    pending = true;
+    if (useMacroTask) {
+      macroTimerFunc();
+    } else {
+      microTimerFunc();
+    }
+  }
+  // $flow-disable-line
+  if (!cb && typeof Promise !== 'undefined') {
+    return new Promise(function (resolve) {
+      _resolve = resolve;
+    })
+  }
 }
 
 /*  */
@@ -91327,14 +91390,16 @@ function normalizeArrayChildren (children, nestedIndex) {
     lastIndex = res.length - 1;
     last = res[lastIndex];
     //  nested
-    if (Array.isArray(c) && c.length > 0) {
-      c = normalizeArrayChildren(c, ((nestedIndex || '') + "_" + i));
-      // merge adjacent text nodes
-      if (isTextNode(c[0]) && isTextNode(last)) {
-        res[lastIndex] = createTextVNode(last.text + (c[0]).text);
-        c.shift();
+    if (Array.isArray(c)) {
+      if (c.length > 0) {
+        c = normalizeArrayChildren(c, ((nestedIndex || '') + "_" + i));
+        // merge adjacent text nodes
+        if (isTextNode(c[0]) && isTextNode(last)) {
+          res[lastIndex] = createTextVNode(last.text + (c[0]).text);
+          c.shift();
+        }
+        res.push.apply(res, c);
       }
-      res.push.apply(res, c);
     } else if (isPrimitive(c)) {
       if (isTextNode(last)) {
         // merge adjacent text nodes
@@ -93045,7 +93110,7 @@ function bindObjectListeners (data, value) {
       for (var key in value) {
         var existing = on[key];
         var ours = value[key];
-        on[key] = existing ? [].concat(ours, existing) : ours;
+        on[key] = existing ? [].concat(existing, ours) : ours;
       }
     }
   }
@@ -94129,7 +94194,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.5.0';
+Vue$3.version = '2.5.2';
 
 /*  */
 
@@ -95786,6 +95851,7 @@ var warn$1;
 // in some cases, the event used has to be determined at runtime
 // so we used some reserved tokens during compile.
 var RANGE_TOKEN = '__r';
+var CHECKBOX_RADIO_TOKEN = '__c';
 
 function model (
   el,
@@ -95949,9 +96015,26 @@ function normalizeEvents (on) {
     on[event] = [].concat(on[RANGE_TOKEN], on[event] || []);
     delete on[RANGE_TOKEN];
   }
+  // This was originally intended to fix #4521 but no longer necessary
+  // after 2.5. Keeping it for backwards compat with generated code from < 2.4
+  /* istanbul ignore if */
+  if (isDef(on[CHECKBOX_RADIO_TOKEN])) {
+    on.change = [].concat(on[CHECKBOX_RADIO_TOKEN], on.change || []);
+    delete on[CHECKBOX_RADIO_TOKEN];
+  }
 }
 
 var target$1;
+
+function createOnceHandler (handler, event, capture) {
+  var _target = target$1; // save current target element in closure
+  return function onceHandler () {
+    var res = handler.apply(null, arguments);
+    if (res !== null) {
+      remove$2(event, onceHandler, capture, _target);
+    }
+  }
+}
 
 function add$1 (
   event,
@@ -95960,18 +96043,8 @@ function add$1 (
   capture,
   passive
 ) {
-  if (once$$1) {
-    var oldHandler = handler;
-    var _target = target$1; // save current target element in closure
-    handler = function (ev) {
-      var res = arguments.length === 1
-        ? oldHandler(ev)
-        : oldHandler.apply(null, arguments);
-      if (res !== null) {
-        remove$2(event, handler, capture, _target);
-      }
-    };
-  }
+  handler = withMacroTask(handler);
+  if (once$$1) { handler = createOnceHandler(handler, event, capture); }
   target$1.addEventListener(
     event,
     handler,
@@ -95987,7 +96060,11 @@ function remove$2 (
   capture,
   _target
 ) {
-  (_target || target$1).removeEventListener(event, handler, capture);
+  (_target || target$1).removeEventListener(
+    event,
+    handler._withTask || handler,
+    capture
+  );
 }
 
 function updateDOMListeners (oldVnode, vnode) {
@@ -97307,6 +97384,10 @@ var TransitionGroup = {
     children.forEach(applyTranslation);
 
     // force reflow to put everything in position
+    // assign to this to avoid being removed in tree-shaking
+    // $flow-disable-line
+    this._reflow = document.body.offsetHeight;
+
     children.forEach(function (c) {
       if (c.data.moved) {
         var el = c.elm;
@@ -98563,7 +98644,7 @@ function preTransformNode (el, options) {
       addRawAttr(branch0, 'type', 'checkbox');
       processElement(branch0, options);
       branch0.processed = true; // prevent it from double-processed
-      branch0.if = "type==='checkbox'" + ifConditionExtra;
+      branch0.if = "(" + typeBinding + ")==='checkbox'" + ifConditionExtra;
       addIfCondition(branch0, {
         exp: branch0.if,
         block: branch0
@@ -98574,7 +98655,7 @@ function preTransformNode (el, options) {
       addRawAttr(branch1, 'type', 'radio');
       processElement(branch1, options);
       addIfCondition(branch0, {
-        exp: "type==='radio'" + ifConditionExtra,
+        exp: "(" + typeBinding + ")==='radio'" + ifConditionExtra,
         block: branch1
       });
       // 3. other
