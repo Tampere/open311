@@ -3,9 +3,9 @@
         <td><input title="Select" type="checkbox" @change="emitChange" v-model="selected"></td>
         <td>{{data.created_at | formatTimestamp('DD.MM.YYYY HH:mm') }}</td>
         <td>
-            <a :href="url">{{data.title}}</a>
+            <a :href="url">{{data.title ? data.title : '[ei otsikkoa]'}}</a>
         </td>
-        <td>{{data.description | truncate(30) }}</td>
+        <td><a :href="url">{{data.description | truncate(30) }}</a></td>
         <td>
             <span v-tooltip="'Odottavat palautteet eivät näy rajapinnassa.'" class="label" :class="data.status === 'pending' ? 'label-info' : 'label-primary'">
                 {{data.status}}

@@ -113301,7 +113301,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": _vm.url
     }
-  }, [_vm._v(_vm._s(_vm.data.title))])]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("truncate")(_vm.data.description, 30)))]), _vm._v(" "), _c('td', [_c('span', {
+  }, [_vm._v(_vm._s(_vm.data.title ? _vm.data.title : '[ei otsikkoa]'))])]), _vm._v(" "), _c('td', [_c('a', {
+    attrs: {
+      "href": _vm.url
+    }
+  }, [_vm._v(_vm._s(_vm._f("truncate")(_vm.data.description, 30)))])]), _vm._v(" "), _c('td', [_c('span', {
     directives: [{
       name: "tooltip",
       rawName: "v-tooltip",
