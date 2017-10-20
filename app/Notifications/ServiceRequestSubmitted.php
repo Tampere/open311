@@ -48,10 +48,11 @@ class ServiceRequestSubmitted extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('A new request has arrived.')
+                    ->line('Uusi palaute saapunut.')
                     ->line($this->description)
-                    ->action('Click here to see it', url('/requests/'.$this->service_request_id))
-                    ->line('Cheers!');
+                    ->action('Klikkaa suoraan palautteeseen', url('/requests/'.$this->service_request_id))
+                    ->line('Tähän viestiin ei kannata vastata.')
+                    ->line('Mukavaa päivänjatkoa!');
     }
 
     /**
