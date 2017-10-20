@@ -21,6 +21,19 @@
             </tbody>
         </table>
 
+        @if($user->admin)
+            <form action="{{url('users/'.$user->id).'/admin'}}" method="POST" class="form">
+                {{csrf_field()}}
+                {{method_field('DELETE')}}
+                <button type="submit" class="btn btn-danger">Poista pääkäyttäjästatus</button>
+            </form>
+        @else
+            <form action="{{url('users/'.$user->id).'/admin'}}" method="POST" class="form">
+                {{csrf_field()}}
+                <button type="submit" class="btn btn-success">Lisää pääkäyttäjästatus</button>
+            </form>
+        @endif
+
         @unless($user->id == auth()->id())
             <form action="{{url('users/'.$user->id)}}" method="POST" class="form">
                 {{csrf_field()}}

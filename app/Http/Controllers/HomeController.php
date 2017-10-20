@@ -43,6 +43,8 @@ class HomeController extends Controller
 
     public function userslist()
     {
+        if(!auth()->user()->admin) return response('Sinulla ei ole oikeutta tähän toimintoon.', 403);
+
         $users = User::all();
 
         return view('users.index', ['users' => $users]);
@@ -50,6 +52,8 @@ class HomeController extends Controller
 
     public function update(Request $request, User $user)
     {
+        if(!auth()->user()->admin) return response('Sinulla ei ole oikeutta tähän toimintoon.', 403);
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
@@ -66,8 +70,32 @@ class HomeController extends Controller
             ->with('status', 'Käyttäjän tiedot päivitettiin.');
     }
 
+    public function setAdmin(User $user)
+    {
+        if(!auth()->user()->admin) return response('Sinulla ei ole oikeutta tähän toimintoon.', 403);
+
+        $user->admin = true;
+        $user->save();
+
+        return redirect('users')
+            ->with('status', 'Käyttäjä merkattu pääkäyttäjäksi');
+    }
+
+    public function setNotAdmin(User $user)
+    {
+        if(!auth()->user()->admin) return response('Sinulla ei ole oikeutta tähän toimintoon.', 403);
+
+        $user->admin = false;
+        $user->save();
+
+        return redirect('users')
+            ->with('status', 'Pääkäyttäjästatus poistettu');
+    }
+
     public function destroy(User $user)
     {
+        if(!auth()->user()->admin) return response('Sinulla ei ole oikeutta tähän toimintoon.', 403);
+
         $user->delete();
 
         return redirect('users')

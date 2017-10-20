@@ -65,8 +65,10 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{route('profile')}}">Muokkaa tietojasi</a></li>
+                                    @if(Auth::user()->admin)
                                     <li role="separator" class="divider"></li>
                                     <li><a href="{{route('users')}}">Hallitse käyttäjiä</a></li>
+                                    @endif
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"

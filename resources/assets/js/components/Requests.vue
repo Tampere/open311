@@ -12,9 +12,8 @@
             </tr>
             </thead>
 
-            <tbody>
+            <tbody v-if="requests.data.length > 0">
                 <request
-                        v-if="requests.data.length > 0"
                         v-for="request in requests.data"
                         :key="request.service_request_id"
                         :data="request"
@@ -22,8 +21,10 @@
                         @selected="addToSelected"
                         @deselected="removeFromSelected">
                 </request>
+            </tbody>
 
-                <tr v-if="requests.data.length === 0">
+            <tbody v-if="requests.data.length === 0">
+                <tr>
                     <td colspan="6"><em>Ei odottavia tai avoimia palautteita</em></td>
                 </tr>
             </tbody>

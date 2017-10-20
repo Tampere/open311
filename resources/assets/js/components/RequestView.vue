@@ -87,8 +87,84 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">Sijainti</th>
-                        <td><strong>Osoite: </strong>{{data.address_string}} <strong>Postinumero: </strong>{{data.zip_code}} <strong>Geo: </strong>{{data.location}}</td>
+                        <th scope="row">Osoite</th>
+                        <td>
+                            <span class="editable" @click="editAddress = true" v-show="!editAddress">
+                                {{data.address_string}}
+                            </span>
+                            <input
+                                    type="text"
+                                    v-model="data.address_string"
+                                    v-show="editAddress"
+                                    v-on:keyup.enter="updateAddress">
+                            <div class="btn-group" role="group" style="float: right">
+                                <button
+                                        v-if="!editAddress"
+                                        class="btn btn-xs btn-primary"
+                                        @click="editAddress = true">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                                <button
+                                        v-if="editAddress"
+                                        class="btn btn-xs btn-primary"
+                                        @click="updateAddress">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                                </button>
+                                <button
+                                        class="btn btn-xs btn-danger"
+                                        @click="clearAddress">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Postinumero</th>
+                        <td>
+                            <span class="editable" @click="editZip = true" v-show="!editZip">
+                                {{data.zip_code}}
+                            </span>
+                            <input
+                                    type="text"
+                                    v-model="data.zip_code"
+                                    v-show="editZip"
+                                    v-on:keyup.enter="updateZip">
+                            <div class="btn-group" role="group" style="float: right">
+                                <button
+                                        v-if="!editZip"
+                                        class="btn btn-xs btn-primary"
+                                        @click="editZip = true">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </button>
+                                <button
+                                        v-if="editZip"
+                                        class="btn btn-xs btn-primary"
+                                        @click="updateZip">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                                </button>
+                                <button
+                                        class="btn btn-xs btn-danger"
+                                        @click="clearZip">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Koordinaatit</th>
+                        <td>
+                            {{data.location}}
+                            <div class="btn-group" role="group" style="float: right">
+                                <button
+                                        class="btn btn-xs btn-danger"
+                                        @click="clearLocation">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </div>
+                            <br>
+                            <map-renderer @updated="setLocation" :position="data.location"></map-renderer>
+                            <small>Hiiren oikean painikkeen klikkaus määrittää uuden sijainnin.</small>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">Lisääjä</th>
@@ -246,6 +322,9 @@ export default {
             editTitle: false,
             editDescription: false,
             editStatusNotes: false,
+            editAddress: false,
+            editZip: false,
+            editLocation: false,
         }
     },
 
@@ -267,6 +346,47 @@ export default {
         updateStatus(state) {
             this.data.status = state;
             this.update({status: state});
+        },
+
+        updateAddress() {
+            this.update({address_string: this.data.address_string});
+            this.editAddress = false;
+        },
+
+        clearAddress() {
+            if(confirm('Haluatko varmasti poistaa tämän kentän palautteesta?')) {
+                this.update({address_string: ''});
+                this.data.address_string = '';
+            }
+        },
+
+        updateZip() {
+            this.update({zip_code: this.data.zip_code});
+            this.editZip = false;
+        },
+
+        clearZip() {
+            if(confirm('Haluatko varmasti poistaa tämän kentän palautteesta?')) {
+                this.update({zip_code: ''});
+                this.data.zip_code = '';
+            }
+        },
+
+        updateLocation() {
+            this.update({location: this.data.location});
+            this.editLocation = false;
+        },
+
+        setLocation(location) {
+            this.update({location: location});
+            this.data.location = location;
+        },
+
+        clearLocation() {
+            if(confirm('Haluatko varmasti poistaa tämän kentän palautteesta?')) {
+                this.update({location: ''});
+                this.data.location = '';
+            }
         },
 
         updateTitle() {

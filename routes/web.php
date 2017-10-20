@@ -15,6 +15,8 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/users', 'HomeController@userslist')->name('users');
     Route::put('/users/{user}', 'HomeController@update');
     Route::delete('/users/{user}', 'HomeController@destroy');
+    Route::post('/users/{user}/admin', 'HomeController@setAdmin');
+    Route::delete('/users/{user}/admin', 'HomeController@setNotAdmin');
     Route::resource('/services', 'Admin\ServicesController');
     Route::get('/requests/archived', 'Admin\RequestsController@archived')->name('requests.archived');
     Route::resource('/requests', 'Admin\RequestsController');
