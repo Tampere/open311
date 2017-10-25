@@ -15,6 +15,7 @@ class CreateRequestsTable extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->uuid('service_request_id');
+            $table->unsignedInteger('user_id');
             $table->string('service_code');
             $table->string('status')->default('pending');
             $table->text('status_notes')->nullable();
@@ -33,6 +34,11 @@ class CreateRequestsTable extends Migration
             $table->foreign('service_code')
                 ->references('service_code')
                 ->on('services')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onDelete('cascade');
 
             $table->primary('service_request_id');

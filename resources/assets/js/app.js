@@ -14,6 +14,9 @@ import 'vue-directive-tooltip/css/index.css';
 import Vue2Leaflet from 'vue2-leaflet';
 Vue.use(Tooltip);
 
+import VueClipboards from 'vue-clipboards';
+Vue.use(VueClipboards);
+
 window.events = new Vue();
 
 window.flash = function(message) {
@@ -34,6 +37,7 @@ Vue.component('Requests', require('./components/Requests.vue'));
 Vue.component('RequestView', require('./components/RequestView.vue'));
 Vue.component('ChartRenderer', require('./components/ChartRenderer.vue'));
 Vue.component('MapRenderer', require('./components/MapRenderer.vue'));
+Vue.component('ApiKey', require('./components/ApiKey.vue'));
 
 Vue.filter('formatTimestamp', function(value, format) {
     if (!value) return '';

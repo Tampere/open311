@@ -4,12 +4,22 @@ Auth::routes();
 
 Route::get('/', function() {
     if(auth()->check()) {
-        return redirect('home');
+        if(auth()->user()->isModerator()) {
+            return redirect('home');
+        }
+        return redirect('client');
     }
-    return view('welcome');
+    return view('clientwelcome');
 });
 
+Route::post('/clientregister', 'ClientController@register');
+
 Route::middleware(['auth'])->group(function() {
+    Route::get('client', 'ClientController@index');
+    Route::post('client/key', 'ClientController@store');
+});
+
+Route::middleware(['auth', 'EmployeesOnly'])->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::get('/users', 'HomeController@userslist')->name('users');
