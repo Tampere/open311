@@ -3,7 +3,20 @@
         {{body}}
     </div>
 </template>
-<style>
+<style scoped>
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+
     .alert-flash {
         position: fixed;
         bottom: 25px;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\RequestStatusUpdated;
 use App\Http\Controllers\Controller;
+use App\Mail\ApiUserRemoved;
 use App\Request as ServiceRequest;
 use App\RequestUpdate;
 use App\User;
@@ -135,7 +136,11 @@ class RequestsController extends Controller
             abort(403);
         }
 
-        User::destroy($id);
+        $user = User::find($id);
+
+        Mail::to($user)->send(new ApiUserRemoved($user));
+
+        $user->delete();
 
         return response('Käyttäjätili suljettu', 200);
     }

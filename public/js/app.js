@@ -49796,6 +49796,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -72007,13 +72020,7 @@ exports = module.exports = __webpack_require__(41)();
 exports.push([module.i, "\n.table[data-v-21cac216] {\n    background: #fff;\n}\n", ""]);
 
 /***/ }),
-/* 705 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(41)();
-exports.push([module.i, "\n.alert-flash {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n}\n", ""]);
-
-/***/ }),
+/* 705 */,
 /* 706 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -125282,7 +125289,7 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(758)
+__webpack_require__(772)
 
 var Component = __webpack_require__(37)(
   /* script */
@@ -125290,7 +125297,7 @@ var Component = __webpack_require__(37)(
   /* template */
   __webpack_require__(750),
   /* scopeId */
-  null,
+  "data-v-2c8a4a8f",
   /* cssModules */
   null
 )
@@ -126802,32 +126809,7 @@ if(false) {
 }
 
 /***/ }),
-/* 758 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(705);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(58)("08680ddf", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2c8a4a8f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2c8a4a8f\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 758 */,
 /* 759 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -126958,6 +126940,45 @@ var X=n(35),H=n(39),K=n(40);e.Buffer=i,e.SlowBuffer=m,e.INSPECT_MAX_BYTES=50,i.T
 __webpack_require__(393);
 module.exports = __webpack_require__(394);
 
+
+/***/ }),
+/* 765 */,
+/* 766 */,
+/* 767 */,
+/* 768 */,
+/* 769 */,
+/* 770 */,
+/* 771 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(41)();
+exports.push([module.i, "\n.alert[data-v-2c8a4a8f] {\n    padding: 15px;\n    margin-bottom: 20px;\n    border: 1px solid transparent;\n    border-radius: 4px;\n}\n.alert-success[data-v-2c8a4a8f] {\n    color: #3c763d;\n    background-color: #dff0d8;\n    border-color: #d6e9c6;\n}\n.alert-flash[data-v-2c8a4a8f] {\n    position: fixed;\n    bottom: 25px;\n    right: 25px;\n}\n", ""]);
+
+/***/ }),
+/* 772 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(771);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(58)("06b042c8", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2c8a4a8f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-2c8a4a8f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Flash.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);
