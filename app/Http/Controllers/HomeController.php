@@ -45,7 +45,7 @@ class HomeController extends Controller
     {
         if(!auth()->user()->admin) return response('Sinulla ei ole oikeutta tähän toimintoon.', 403);
 
-        $users = User::all();
+        $users = User::where('admin', true)->orWhere('moderator', true)->get();
 
         return view('users.index', ['users' => $users]);
     }
