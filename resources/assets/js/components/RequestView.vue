@@ -29,6 +29,12 @@
                                     class="btn btn-xs btn-danger">
                                 Poista avaimen haltija ja kaikki häneen liitetyt palautteet
                             </button>
+                            <button v-if="isAdmin && this.data.user.api_token != null"
+                                    @click="removeApiKey"
+                                    class="btn btn-xs btn-warning">
+                                Poista avain
+                            </button>
+                            <span class="alert-danger" v-if="this.data.user.api_token == null"><em>Rajapinta-avain suljettu</em></span>
                         </td>
                     </tr>
                     <tr>
@@ -346,6 +352,16 @@ export default {
                 axios.delete('/delete-api-user/' + this.data.user.id)
                     .then(() => {
                         window.location = '/requests';
+                    });
+            }
+        },
+
+        removeApiKey() {
+            if(confirm("Haluatko varmasti sulkea tämän avaimen?")) {
+                axios.delete('/delete-api-key/' + this.data.user.api_token)
+                    .then((response) => {
+                        this.data.user.api_token = null;
+                        flash(response.data);
                     });
             }
         },

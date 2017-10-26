@@ -33,6 +33,7 @@ Route::middleware(['auth', 'EmployeesOnly'])->group(function() {
     Route::resource('/requests', 'Admin\RequestsController');
     Route::post('/delete-requests', 'Admin\RequestsController@destroyRequests');
     Route::delete('/delete-api-user/{id}', 'Admin\RequestsController@destroyApiUser');
+    Route::delete('/delete-api-key/{token}', 'Admin\RequestsController@destroyApiKey');
     Route::delete('/images/{photo}', 'Admin\RequestPhotoController@destroy');
     Route::get('/requests/{request}/activity', 'Admin\RequestsController@activities');
 });

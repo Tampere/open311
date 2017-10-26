@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\RequestStatusUpdated;
 use App\Http\Controllers\Controller;
+use App\Mail\ApiKeyRemoved;
 use App\Mail\ApiUserRemoved;
 use App\Request as ServiceRequest;
 use App\RequestUpdate;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RequestsController extends Controller
 {
@@ -142,6 +144,22 @@ class RequestsController extends Controller
 
         $user->delete();
 
-        return response('Käyttäjätili suljettu', 200);
+        return response('Käyttäjätili suljettu.', 200);
+    }
+
+    public function destroyApiKey($token)
+    {
+        if(!auth()->user()->admin) {
+            abort(403);
+        }
+
+        $user = User::where('api_token', $token)->first();
+
+        Mail::to($user)->send(new ApiKeyRemoved($user));
+
+        $user->api_token = null;
+        $user->save();
+
+        return response('Rajapinta-avain poistettu.', 200);
     }
 }

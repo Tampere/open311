@@ -50351,6 +50351,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50380,6 +50386,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (confirm("Haluatko varmasti sulkea tämän avaimen, poistaa käyttäjän ja kaikki käyttäjän lisäämät palautteet?")) {
                 axios.delete('/delete-api-user/' + this.data.user.id).then(function () {
                     window.location = '/requests';
+                });
+            }
+        },
+        removeApiKey: function removeApiKey() {
+            var _this = this;
+
+            if (confirm("Haluatko varmasti sulkea tämän avaimen?")) {
+                axios.delete('/delete-api-key/' + this.data.user.api_token).then(function (response) {
+                    _this.data.user.api_token = null;
+                    flash(response.data);
                 });
             }
         },
@@ -50468,14 +50484,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         deleteImage: function deleteImage(photo) {
-            var _this = this;
+            var _this2 = this;
 
             if (confirm('Haluatko varmasti poistaa tämän kuvan?')) {
                 axios.delete('/images/' + photo.id).then(function (response) {
                     window.flash(response.data);
 
-                    var index = _this.data.photos.indexOf(photo);
-                    _this.data.photos.splice(index, 1);
+                    var index = _this2.data.photos.indexOf(photo);
+                    _this2.data.photos.splice(index, 1);
                 });
             }
         },
@@ -125579,7 +125595,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.removeApiUser
     }
-  }, [_vm._v("\n                            Poista avaimen haltija ja kaikki häneen liitetyt palautteet\n                        ")]) : _vm._e()])]), _vm._v(" "), _c('tr', [_c('th', {
+  }, [_vm._v("\n                            Poista avaimen haltija ja kaikki häneen liitetyt palautteet\n                        ")]) : _vm._e(), _vm._v(" "), (_vm.isAdmin && this.data.user.api_token != null) ? _c('button', {
+    staticClass: "btn btn-xs btn-warning",
+    on: {
+      "click": _vm.removeApiKey
+    }
+  }, [_vm._v("\n                            Poista avain\n                        ")]) : _vm._e(), _vm._v(" "), (this.data.user.api_token == null) ? _c('span', {
+    staticClass: "alert-danger"
+  }, [_c('em', [_vm._v("Rajapinta-avain suljettu")])]) : _vm._e()])]), _vm._v(" "), _c('tr', [_c('th', {
     attrs: {
       "scope": "row"
     }
