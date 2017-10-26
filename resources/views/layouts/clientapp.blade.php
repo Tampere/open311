@@ -22,6 +22,9 @@
             </div>
             <div class="navbar-menu is-active">
                 <div class="navbar-end">
+                    <a class="navbar-item" href="{{ url('/client/manage') }}">
+                        Manage personal information
+                    </a>
                     <a class="navbar-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

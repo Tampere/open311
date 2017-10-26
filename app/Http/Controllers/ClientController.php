@@ -79,4 +79,14 @@ class ClientController extends Controller
 
         return redirect('/client');
     }
+
+    public function edit()
+    {
+        return view('clientmanage');
+    }
+
+    public function update(Request $request)
+    {
+
+    }
 }
