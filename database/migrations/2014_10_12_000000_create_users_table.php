@@ -20,7 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('admin')->default(false);
             $table->boolean('moderator')->default(false);
-            $table->string('api_key', 60)->unique();
+            $table->string('api_token', 60)->unique()->nullable();
+            $table->string('verification_key', 60)->unique()->nullable();
+            $table->boolean('verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

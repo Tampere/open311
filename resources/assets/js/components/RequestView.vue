@@ -21,6 +21,17 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <th scope="row">Avaimen haltijan tiedot</th>
+                        <td>
+                            <strong>Nimi: </strong>{{data.user.name}}, <strong>Email: </strong>{{data.user.email}}
+                            <button v-if="isAdmin"
+                                    @click="removeApiUser"
+                                    class="btn btn-xs btn-danger">
+                                Poista avaimen haltija ja kaikki häneen liitetyt palautteet
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row">Service request id</th>
                         <td>{{data.service_request_id}}</td>
                     </tr>
@@ -325,10 +336,20 @@ export default {
             editAddress: false,
             editZip: false,
             editLocation: false,
+            isAdmin: window.adminStatus,
         }
     },
 
     methods: {
+        removeApiUser() {
+            if(confirm("Haluatko varmasti sulkea tämän avaimen, poistaa käyttäjän ja kaikki käyttäjän lisäämät palautteet?")) {
+                axios.delete('/delete-api-user/' + this.data.user.id)
+                    .then(() => {
+                        window.location = '/requests';
+                    });
+            }
+        },
+
         update(data) {
             axios.patch('/requests/' + this.data.service_request_id, data)
                 .then((response) => {

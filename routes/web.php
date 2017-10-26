@@ -13,6 +13,7 @@ Route::get('/', function() {
 });
 
 Route::post('/clientregister', 'ClientController@register');
+Route::get('/client/verify/{token}', 'ClientController@verify');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('client', 'ClientController@index');
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'EmployeesOnly'])->group(function() {
     Route::get('/requests/archived', 'Admin\RequestsController@archived')->name('requests.archived');
     Route::resource('/requests', 'Admin\RequestsController');
     Route::post('/delete-requests', 'Admin\RequestsController@destroyRequests');
+    Route::delete('/delete-api-user/{id}', 'Admin\RequestsController@destroyApiUser');
     Route::delete('/images/{photo}', 'Admin\RequestPhotoController@destroy');
     Route::get('/requests/{request}/activity', 'Admin\RequestsController@activities');
 });

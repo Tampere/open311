@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmailVerification;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -15,14 +17,20 @@ class ClientController extends Controller
 
     public function store()
     {
-        $token = '';
-        do {
-            $token = str_random(60);
-        } while(User::where('api_key', $token)->exists());
+        $token = $this->generateApiKey();
 
-        auth()->user()->update(['api_key' => $token]);
+        auth()->user()->update(['api_token' => $token]);
 
         return response($token, 200);
+    }
+
+    private function generateApiKey()
+    {
+        do {
+            $token = str_random(60);
+        } while(User::where('api_token', $token)->exists());
+
+        return $token;
     }
 
     public function register(Request $request)
@@ -33,21 +41,42 @@ class ClientController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        $token = '';
         do {
             $token = str_random(60);
-        } while(User::where('api_key', $token)->exists());
+        } while(User::where('verification_key', $token)->exists());
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'api_key' => $token
+            'verification_key' => $token
         ]);
 
         Auth::login($user);
 
+        Mail::to($user)->send(new EmailVerification($user));
+
         return redirect('client')
             ->with('status', 'Please, confirm your email to proceed.');
+    }
+
+    public function verify($token)
+    {
+        $user = User::where('verification_key', $token)->first();
+
+        if(!$user) {
+            return response('The provided verification token is invalid. Perhaps it has been clicked before?', 400);
+        }
+
+        $token = $this->generateApiKey();
+
+        $user->verified = true;
+        $user->verification_key = null;
+        $user->api_token = $token;
+        $user->save();
+
+        Auth::login($user);
+
+        return redirect('/client');
     }
 }

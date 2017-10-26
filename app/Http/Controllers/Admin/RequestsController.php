@@ -6,6 +6,7 @@ use App\Events\RequestStatusUpdated;
 use App\Http\Controllers\Controller;
 use App\Request as ServiceRequest;
 use App\RequestUpdate;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class RequestsController extends Controller
     {
         if(request()->expectsJson()) {
             return ServiceRequest::latest()
-                ->with(['service', 'photos'])
+                ->with(['service', 'photos', 'user'])
                 ->whereIn('status', ['pending', 'open'])
                 ->paginate(10);
         }
@@ -32,7 +33,7 @@ class RequestsController extends Controller
     {
         if(request()->expectsJson()) {
             return ServiceRequest::latest()
-                ->with(['service', 'photos'])
+                ->with(['service', 'photos', 'user'])
                 ->where('status', 'closed')
                 ->paginate(10);
         }
@@ -48,7 +49,7 @@ class RequestsController extends Controller
      */
     public function show($id)
     {
-        $request = ServiceRequest::with(['service', 'photos'])
+        $request = ServiceRequest::with(['service', 'photos', 'user'])
             ->findOrFail($id);
 
         auth()
@@ -126,5 +127,16 @@ class RequestsController extends Controller
 
         return redirect('requests')
             ->with('status', 'Palautteet poistettu.');
+    }
+
+    public function destroyApiUser($id)
+    {
+        if(!auth()->user()->admin) {
+            abort(403);
+        }
+
+        User::destroy($id);
+
+        return response('Käyttäjätili suljettu', 200);
     }
 }

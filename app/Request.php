@@ -32,6 +32,11 @@ class Request extends Model
         return $this->hasMany(RequestPhoto::class, 'service_request_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getLat()
     {
         if(is_null($this->location)) return null;

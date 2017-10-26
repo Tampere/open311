@@ -51,6 +51,7 @@ class ServiceRequest extends FormRequest
     public function persist()
     {
         $request = Request::create([
+            'user_id' => auth()->id(),
             'service_code' => $this->service_code,
             'description' => $this->description,
             'title' => $this->title ?: null,

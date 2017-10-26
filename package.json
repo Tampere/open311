@@ -24,6 +24,7 @@
     "laravel-vue-pagination": "^1.0.6",
     "moment": "^2.19.1",
     "vue-chartjs": "^3.0.0",
+    "vue-clipboards": "^1.1.0",
     "vue-directive-tooltip": "^1.4.0",
     "vue2-leaflet": "0.0.55"
   }
