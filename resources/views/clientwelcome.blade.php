@@ -71,6 +71,9 @@
                         <button class="button is-link">Log in</button>
                     </div>
                 </div>
+                <p>
+                    <a href="{{url('/client/reset')}}">Forgot your password?</a>
+                </p>
             </form>
         </div>
     </div>

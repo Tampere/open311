@@ -49717,7 +49717,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            apikey: this.data
+            apikey: this.data ? this.data : 'API key has been disabled. Please, generate a new one.'
         };
     },
 

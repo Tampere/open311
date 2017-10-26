@@ -36,4 +36,13 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function redirectTo()
+    {
+        if(auth()->user()->isModerator()) {
+            return '/home';
+        }
+
+        return '/client';
+    }
 }

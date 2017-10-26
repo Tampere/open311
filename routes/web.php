@@ -14,6 +14,7 @@ Route::get('/', function() {
 
 Route::post('/clientregister', 'ClientController@register');
 Route::get('/client/verify/{token}', 'ClientController@verify');
+Route::get('/client/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('client', 'ClientController@index');
