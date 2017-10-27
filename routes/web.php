@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('client', 'ClientController@index');
     Route::get('client/manage', 'ClientController@edit');
     Route::post('client/manage', 'ClientController@update');
+    Route::post('client/manage/password', 'ClientController@updatePassword');
     Route::post('client/key', 'ClientController@store');
 });
 

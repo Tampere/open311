@@ -13,6 +13,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bulma.css') }}" rel="stylesheet">
+    <style>
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -53,6 +67,7 @@
 
     <section class="section">
         <div class="container">
+            @include('layouts.status_message')
             @yield('content')
         </div>
     </section>

@@ -12,6 +12,10 @@
             <div class="control">
                 <input class="input" id="name" name="name" type="text" value="{{old('name', auth()->user()->name)}}" required>
             </div>
+
+            @if($errors->has('name'))
+                <p class="help is-danger">{{$errors->get('name')[0]}}</p>
+            @endif
         </div>
 
         <div class="field">
@@ -19,6 +23,10 @@
             <div class="control">
                 <input class="input" id="email" name="email" type="email" value="{{old('email', auth()->user()->email)}}" required>
             </div>
+
+            @if($errors->has('email'))
+                <p class="help is-danger">{{$errors->get('email')[0]}}</p>
+            @endif
         </div>
 
         <div class="field">
@@ -30,7 +38,7 @@
 
     <hr>
 
-    <form action="{{url('client/manage')}}" method="post">
+    <form action="{{url('client/manage/password')}}" method="post">
         {{csrf_field()}}
         {{--Update password--}}
         <div class="field">
@@ -38,6 +46,10 @@
             <div class="control">
                 <input class="input" id="password" name="password" type="password" required>
             </div>
+
+            @if($errors->has('password'))
+                <p class="help is-danger">{{$errors->get('password')[0]}}</p>
+            @endif
         </div>
 
         <div class="field">
@@ -45,6 +57,10 @@
             <div class="control">
                 <input class="input" id="password-confirm" name="password_confirmation" type="password" required>
             </div>
+
+            @if($errors->has('password_confirmation'))
+                <p class="help is-danger">{{$errors->get('password_confirmation')[0]}}</p>
+            @endif
         </div>
 
         <div class="field">

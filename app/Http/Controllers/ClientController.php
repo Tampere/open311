@@ -87,6 +87,31 @@ class ClientController extends Controller
 
     public function update(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . auth()->id()
+        ]);
 
+        auth()->user()->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        return redirect('/client')
+            ->with('status', 'Information updated.');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required|confirmed'
+        ]);
+
+        auth()->user()->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        return redirect('/client')
+            ->with('status', 'Password changed.');
     }
 }
