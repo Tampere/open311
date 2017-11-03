@@ -3,7 +3,7 @@
 
 Please verify your email address by clicking the following button to get a API key.
 
-@component('mail::button', ['url' => url('/client/verify/' . $user->verification_token)])
+@component('mail::button', ['url' => url('/client/verify/' . $user->verification_key)])
 Verify email address
 @endcomponent
 
