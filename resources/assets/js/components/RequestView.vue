@@ -191,11 +191,10 @@
                         <th scope="row">Media url</th>
                         <td>
                             <span
-                                class="editable"
                                 v-if="data.media_url"
                                 v-tooltip="{ html: 'tooltipContent' }"
                             >
-                                {{data.media_url}}
+                                <a :href="data.media_url" target="_blank">{{data.media_url}}</a>
                             </span>
                             <div class="btn-group" role="group" style="float: right">
                                 <button
@@ -314,7 +313,7 @@
 
                 <div id="tooltipContent">
                     <p>
-                        <img :src="data.media_url" alt="data.title" width="640" height="480">
+                        <img :src="data.media_url" alt="data.title" width="300" height="200">
                     </p>
                 </div>
             </div>
