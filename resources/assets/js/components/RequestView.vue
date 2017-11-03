@@ -192,7 +192,7 @@
                         <td>
                             <span
                                 v-if="data.media_url"
-                                v-tooltip="{ html: 'tooltipContent' }"
+                                v-tooltip.bottom="{ html: 'tooltipContent' }"
                             >
                                 <a :href="data.media_url" target="_blank">{{data.media_url}}</a>
                             </span>
@@ -491,12 +491,16 @@ export default {
 </script>
 
 <style scoped>
-.editable {
-    color: #2a88bd;
-    border-bottom: 1px dotted #2a88bd;
-}
+    .editable {
+        color: #2a88bd;
+        border-bottom: 1px dotted #2a88bd;
+    }
 
     .segment {
         background-color: #98cbe8;
+    }
+
+    .vue-tooltip {
+        z-index: 9999;
     }
 </style>

@@ -85609,7 +85609,7 @@ exports.push([module.i, ".vue-tooltip{background-color:#000;box-sizing:border-bo
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(41)();
-exports.push([module.i, "\n.editable[data-v-1a782933] {\r\n    color: #2a88bd;\r\n    border-bottom: 1px dotted #2a88bd;\n}\n.segment[data-v-1a782933] {\r\n        background-color: #98cbe8;\n}\r\n", ""]);
+exports.push([module.i, "\n.editable[data-v-1a782933] {\n    color: #2a88bd;\n    border-bottom: 1px dotted #2a88bd;\n}\n.segment[data-v-1a782933] {\n    background-color: #98cbe8;\n}\n.vue-tooltip[data-v-1a782933] {\n    z-index: 9999;\n}\n", ""]);
 
 /***/ }),
 /* 706 */
@@ -125919,11 +125919,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Media url")]), _vm._v(" "), _c('td', [(_vm.data.media_url) ? _c('span', {
     directives: [{
       name: "tooltip",
-      rawName: "v-tooltip",
+      rawName: "v-tooltip.bottom",
       value: ({
         html: 'tooltipContent'
       }),
-      expression: "{ html: 'tooltipContent' }"
+      expression: "{ html: 'tooltipContent' }",
+      modifiers: {
+        "bottom": true
+      }
     }]
   }, [_c('a', {
     attrs: {
