@@ -68,11 +68,10 @@ class RequestsController extends Controller
     {
         $serviceRequest = $request->persist();
 
-        $users = User::all();
-
-        foreach($users as $user) {
+        // Notify only staff members, not API users
+        User::moderators()->each(function($user) use ($serviceRequest) {
             $user->notify(new ServiceRequestSubmitted($serviceRequest));
-        }
+        });
 
         return response()->json([
             'service_request_id' => $serviceRequest->service_request_id,

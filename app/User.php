@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return ($this->admin || $this->moderator);
     }
+
+    public function scopeModerators($query)
+    {
+        return $query->where('admin', true)->orWhere('moderator', true);
+    }
 }
