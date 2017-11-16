@@ -8,10 +8,12 @@ Palautteesi tila on nyt
     avoin.
 @elseif($request->status === 'closed')
     suljettu.
+@elseif($request->status === 'pending')
+    odottava.
 @endif
 
 @if(strlen($request->status_notes) > 0)
-    Palautteellesi on annettu seuraava tilaviesti: <br> {{$request->status_notess}}
+    Palautteellesi on annettu seuraava tilaviesti: <br> {{$request->status_notes}}
 @endif
 
 Ystävällisin terveisin,<br>
