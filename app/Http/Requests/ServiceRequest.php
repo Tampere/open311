@@ -42,7 +42,7 @@ class ServiceRequest extends FormRequest
 
         $photos = count($this->input('media'));
         foreach (range(0, $photos) as $index) {
-            $rules['media.' . $index] = 'image|mimes:jpeg,bmp,png|max:2000';
+            $rules['media.' . $index] = 'image|mimes:jpeg,bmp,png|max:40000';
         }
 
         return $rules;
